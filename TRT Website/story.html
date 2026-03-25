@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story | The Red Thread</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ── PAGE-SPECIFIC TOKENS ── */
+        :root {
+            --story-red:   #B92322;
+            --story-cream: #FDFBF7;
+            --story-warm:  #F5F2EA;
+            --story-dark:  #2A2422;
+            --story-muted: #6B625E;
+        }
+ 
+        /* ── HERO ── */
+        .story-hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 160px 5% 100px;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--story-cream);
+        }
+ 
+        /* decorative thread line */
+        .story-hero::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 140px;
+            background: linear-gradient(to bottom, transparent, var(--story-red));
+            opacity: 0.35;
+        }
+ 
+        .story-eyebrow {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--story-red);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+        }
+ 
+        .story-hero-title {
+            font-size: clamp(4rem, 9vw, 8rem);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -3px;
+            color: var(--story-dark);
+            margin-bottom: 2rem;
+        }
+ 
+        .story-hero-title em {
+            font-style: italic;
+            color: var(--story-red);
+            font-weight: 400;
+        }
+ 
+        .story-hero-tagline {
+            font-family: 'Caveat', cursive;
+            font-size: 1.8rem;
+            color: var(--story-muted);
+            letter-spacing: 0px;
+        }
+ 
+        /* decorative squiggle */
+        .hero-squiggle {
+            position: absolute;
+            opacity: 0.12;
+            pointer-events: none;
+        }
+        .hero-squiggle.top-left  { top: 15%; left: 5%; width: 120px; }
+        .hero-squiggle.bot-right { bottom: 15%; right: 5%; width: 100px; transform: scaleX(-1); }
+ 
+        /* ── ORIGIN SECTION ── */
+        .origin-section {
+            padding: 100px 5%;
+            background-color: var(--story-warm);
+            position: relative;
+            overflow: hidden;
+        }
+ 
+        .origin-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+ 
+        .origin-text-col {}
+ 
+        .origin-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--story-red);
+            margin-bottom: 1.5rem;
+        }
+ 
+        .origin-headline {
+            font-size: clamp(2.4rem, 4vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -1.5px;
+            color: var(--story-dark);
+            margin-bottom: 2rem;
+        }
+ 
+        .origin-headline em {
+            font-style: italic;
+            color: var(--story-red);
+            font-weight: 400;
+        }
+ 
+        .origin-body p {
+            font-size: 1.1rem;
+            color: var(--story-muted);
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+        }
+ 
+        .origin-handwriting {
+            font-family: 'Caveat', cursive;
+            font-size: 1.6rem;
+            color: var(--story-red);
+            margin-top: 2rem;
+            display: block;
+            transform: rotate(-2deg);
+        }
+ 
+        .origin-visual-col {
+            position: relative;
+        }
+ 
+        .origin-img-stack {
+            position: relative;
+            height: 520px;
+        }
+ 
+        .origin-img-main {
+            position: absolute;
+            width: 72%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 20px;
+            top: 0;
+            left: 0;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.12);
+        }
+ 
+        .origin-img-secondary {
+            position: absolute;
+            width: 50%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 16px;
+            bottom: 0;
+            right: 0;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            border: 4px solid var(--story-cream);
+        }
+ 
+        /* floating badge */
+        .origin-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-8deg);
+            background: var(--story-red);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 8px 20px rgba(185,35,34,0.3);
+        }
+ 
+        /* ── TICKER BAND ── */
+        .ticker-band {
+            background-color: var(--story-red);
+            padding: 1rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+ 
+        .ticker-track {
+            display: inline-flex;
+            gap: 0;
+            animation: ticker 22s linear infinite;
+        }
+ 
+        .ticker-item {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0 2.5rem;
+        }
+ 
+        .ticker-item::before {
+            content: '✦ ';
+        }
+ 
+        @keyframes ticker {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+ 
+        /* ── VALUES ── */
+        .values-section {
+            padding: 100px 5%;
+            background: var(--story-cream);
+        }
+ 
+        .values-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+ 
+        .values-header {
+            margin-bottom: 70px;
+        }
+ 
+        .values-header .origin-label { margin-bottom: 1rem; }
+ 
+        .values-headline {
+            font-size: clamp(2.5rem, 4.5vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -2px;
+            color: var(--story-dark);
+            line-height: 1;
+        }
+ 
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            border: 2px solid rgba(185,35,34,0.1);
+            border-radius: 24px;
+            overflow: hidden;
+        }
+ 
+        .value-tile {
+            padding: 3rem 2.5rem;
+            background: #fff;
+            transition: background 0.3s ease;
+        }
+ 
+        .value-tile:hover {
+            background: rgba(185,35,34,0.03);
+        }
+ 
+        .value-number {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--story-red);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 2rem;
+            display: block;
+        }
+ 
+        .value-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--story-dark);
+            letter-spacing: -0.5px;
+            margin-bottom: 1rem;
+        }
+ 
+        .value-desc {
+            font-size: 1rem;
+            color: var(--story-muted);
+            line-height: 1.65;
+        }
+ 
+        /* ── MEET US SECTION ── */
+        .meet-section {
+            padding: 100px 5%;
+            background-color: var(--story-warm);
+            position: relative;
+        }
+ 
+        .meet-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+ 
+        .meet-eyebrow {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--story-red);
+            margin-bottom: 1rem;
+        }
+ 
+        .meet-title {
+            font-size: clamp(3rem, 5vw, 5rem);
+            font-weight: 800;
+            letter-spacing: -2px;
+            color: var(--story-dark);
+            line-height: 1;
+        }
+ 
+        .meet-title em {
+            font-style: italic;
+            color: var(--story-red);
+            font-weight: 400;
+        }
+ 
+        /* founder cards */
+        .founders-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+ 
+        .founder-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.07);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+ 
+        .founder-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.12);
+        }
+ 
+        /* alternate layout for second card */
+        .founder-card.reversed { direction: rtl; }
+        .founder-card.reversed .founder-img-col,
+        .founder-card.reversed .founder-text-col { direction: ltr; }
+ 
+        .founder-img-col {
+            position: relative;
+            overflow: hidden;
+            min-height: 480px;
+        }
+ 
+        .founder-img-col img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.6s ease;
+        }
+ 
+        .founder-card:hover .founder-img-col img {
+            transform: scale(1.04);
+        }
+ 
+        .founder-role-tag {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(253, 251, 247, 0.92);
+            backdrop-filter: blur(4px);
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--story-red);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+        }
+ 
+        .founder-text-col {
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+ 
+        .founder-name {
+            font-size: clamp(2rem, 2.5vw, 2.8rem);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            color: var(--story-dark);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+ 
+        .founder-name-asterisk {
+            color: var(--story-red);
+            font-size: 1.6rem;
+        }
+ 
+        .founder-bio {
+            font-size: 0.95rem;
+            color: var(--story-muted);
+            line-height: 1.7;
+            margin: 1.5rem 0;
+            flex: 1;
+        }
+ 
+        .founder-traits {
+            font-family: 'Caveat', cursive;
+            font-size: 1.2rem;
+            color: var(--story-red);
+            line-height: 1.5;
+            border-top: 1px solid rgba(185,35,34,0.12);
+            padding-top: 1.2rem;
+            margin-top: auto;
+        }
+ 
+        /* ── CLOSING CTA ── */
+        .story-cta-section {
+            padding: 120px 5%;
+            background: var(--story-cream);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+ 
+        .story-cta-section::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--story-red) 0%, transparent 70%);
+            filter: blur(80px);
+            opacity: 0.07;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+ 
+        .cta-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--story-red);
+            margin-bottom: 1.5rem;
+        }
+ 
+        .cta-headline {
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 800;
+            letter-spacing: -2.5px;
+            color: var(--story-dark);
+            line-height: 1.0;
+            margin-bottom: 1.5rem;
+        }
+ 
+        .cta-headline em {
+            font-style: italic;
+            color: var(--story-red);
+            font-weight: 400;
+        }
+ 
+        .cta-sub {
+            font-size: 1.2rem;
+            color: var(--story-muted);
+            margin-bottom: 3rem;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+ 
+        .cta-btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+ 
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .origin-inner   { grid-template-columns: 1fr; gap: 50px; }
+            .origin-img-stack { height: 400px; }
+            .values-grid    { grid-template-columns: 1fr 1fr; }
+            .founders-grid  { grid-template-columns: 1fr; max-width: 560px; }
+        }
+ 
+        @media (max-width: 768px) {
+            .values-grid   { grid-template-columns: 1fr; }
+            .founder-card  { grid-template-columns: 1fr; }
+            .founder-card.reversed { direction: ltr; }
+            .founder-img-col { min-height: 320px; }
+            .origin-img-stack { height: 300px; }
+            .origin-img-secondary { display: none; }
+            .story-hero-title { letter-spacing: -2px; }
+        }
+    </style>
+</head>
+<body>
+    <script>document.body.classList.add('js-enabled');</script>
+ 
+    <!-- ── NAVBAR ── -->
+    <header class="navbar">
+        <nav class="nav-links left-links">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="story.html" class="nav-item" style="text-decoration: underline; text-underline-offset: 4px;">Story</a>
+            <a href="#blog" class="nav-item">Blog</a>
+        </nav>
+        <div class="logo-container">
+            <img src="logo.png" class="brand-logo" alt="The Red Thread" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span class="brand-name" style="display:none;">THE RED THREAD</span>
+        </div>
+        <nav class="nav-links right-links">
+            <a href="index.html#download" class="btn-coming-soon">Get Beta Access</a>
+        </nav>
+    </header>
+ 
+    <main>
+ 
+        <!-- ── HERO ── -->
+        <section class="story-hero">
+            <!-- decorative SVG squiggles -->
+            <svg class="hero-squiggle top-left" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10,40 Q30,10 50,40 T90,40 T130,40" stroke="#B92322" stroke-width="1.5" fill="none"/>
+                <path d="M10,55 Q30,25 50,55 T90,55 T130,55" stroke="#B92322" stroke-width="1" fill="none"/>
+            </svg>
+            <svg class="hero-squiggle bot-right" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10,40 Q30,10 50,40 T90,40 T130,40" stroke="#B92322" stroke-width="1.5" fill="none"/>
+                <path d="M10,55 Q30,25 50,55 T90,55 T130,55" stroke="#B92322" stroke-width="1" fill="none"/>
+            </svg>
+ 
+            <span class="story-eyebrow fade-in">The Red Thread</span>
+            <h1 class="story-hero-title slide-up delay-1">
+                Our<br><em>Story.</em>
+            </h1>
+            <p class="story-hero-tagline fade-in delay-2">How two friends turned forgotten plans into something real.</p>
+        </section>
+ 
+        <!-- ── ORIGIN ── -->
+        <section class="origin-section">
+            <div class="origin-inner">
+                <div class="origin-text-col slide-up">
+                    <span class="origin-label">How it started</span>
+                    <h2 class="origin-headline">We were tired of plans that <em>never happened.</em></h2>
+                    <div class="origin-body">
+                        <p>It started with a group chat. You know the one — full of "we should do this!" and "let's go there!" and absolutely zero follow-through. Every idea evaporated before it ever became a memory.</p>
+                        <p>Lara and Stella had been best friends for over a decade. Between late-night calls, shared bucket lists, and way too many screenshots of places they wanted to visit, they kept running into the same wall: the gap between chatting about something and actually doing it.</p>
+                        <p>So they built The Red Thread — an app designed to close that gap. To turn shared dreams into real moments. To make every day an opportunity for a memory worth keeping.</p>
+                    </div>
+                    <span class="origin-handwriting">From chatting to doing.</span>
+                </div>
+ 
+                <div class="origin-visual-col fade-in">
+                    <div class="origin-img-stack">
+                        <img
+                            class="origin-img-main"
+                            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80"
+                            alt="Friends making memories">
+                        <img
+                            class="origin-img-secondary"
+                            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80"
+                            alt="Planning together">
+                        <div class="origin-badge">Est. 2024</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+ 
+        <!-- ── TICKER ── -->
+        <div class="ticker-band" aria-hidden="true">
+            <div class="ticker-track">
+                <span class="ticker-item">Make memories</span>
+                <span class="ticker-item">From chatting to doing</span>
+                <span class="ticker-item">New episodes every week</span>
+                <span class="ticker-item">Real moments, real people</span>
+                <span class="ticker-item">The Red Thread</span>
+                <span class="ticker-item">Make memories</span>
+                <span class="ticker-item">From chatting to doing</span>
+                <span class="ticker-item">New episodes every week</span>
+                <span class="ticker-item">Real moments, real people</span>
+                <span class="ticker-item">The Red Thread</span>
+            </div>
+        </div>
+ 
+        <!-- ── VALUES ── -->
+        <section class="values-section">
+            <div class="values-inner">
+                <div class="values-header slide-up">
+                    <span class="origin-label">What we believe</span>
+                    <h2 class="values-headline">Built on three<br>simple truths.</h2>
+                </div>
+ 
+                <div class="values-grid">
+                    <div class="value-tile slide-up delay-1">
+                        <span class="value-number">01</span>
+                        <h3 class="value-title">Moments over messages</h3>
+                        <p class="value-desc">The best conversations end in real-world action. We design for doing, not just scrolling.</p>
+                    </div>
+                    <div class="value-tile slide-up delay-2">
+                        <span class="value-number">02</span>
+                        <h3 class="value-title">Connection is intentional</h3>
+                        <p class="value-desc">Meaningful relationships don't just happen — they need a nudge, a plan, and a reason to show up.</p>
+                    </div>
+                    <div class="value-tile slide-up delay-3">
+                        <span class="value-number">03</span>
+                        <h3 class="value-title">Every day holds a memory</h3>
+                        <p class="value-desc">You don't need a big occasion. A Tuesday coffee counts. We're here for all of it.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+ 
+        <!-- ── MEET US ── -->
+        <section class="meet-section">
+            <div class="meet-header slide-up">
+                <span class="meet-eyebrow">The Founders</span>
+                <h2 class="meet-title">Meet <em>us</em></h2>
+            </div>
+ 
+            <div class="founders-grid">
+ 
+                <!-- Lara -->
+                <div class="founder-card slide-up delay-1">
+                    <div class="founder-img-col">
+                        <img
+                            src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=600&q=80"
+                            alt="Lara, Co-Founder">
+                        <span class="founder-role-tag">Co-Founder //</span>
+                    </div>
+                    <div class="founder-text-col">
+                        <div>
+                            <h3 class="founder-name">Lara <span class="founder-name-asterisk">✳</span></h3>
+                            <p class="founder-bio">
+                                Lara is the visionary behind The Red Thread's heart. A lover of spontaneous road trips and overplanned itineraries that never survive first contact, she knows first-hand how hard it is to turn "we should do this" into "we actually did this." She built TRT to fix that — for herself, and everyone like her.
+                            </p>
+                        </div>
+                        <p class="founder-traits">
+                            Sagittarius // Dog Mom //<br>Terrible at texting back //
+                        </p>
+                    </div>
+                </div>
+ 
+                <!-- Stella -->
+                <div class="founder-card reversed slide-up delay-2">
+                    <div class="founder-img-col">
+                        <img
+                            src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80"
+                            alt="Stella, Co-Founder">
+                        <span class="founder-role-tag">Co-Founder //</span>
+                    </div>
+                    <div class="founder-text-col">
+                        <div>
+                            <h3 class="founder-name">Stella <span class="founder-name-asterisk">✳</span></h3>
+                            <p class="founder-bio">
+                                Stella is the builder. Equal parts spreadsheet wizard and late-night dreamer, she turned Lara's vision into something you can hold in your hand. She believes technology should bring people together in the real world — not keep them staring at a screen. Every line of The Red Thread has her fingerprints on it.
+                            </p>
+                        </div>
+                        <p class="founder-traits">
+                            Aquarius // Book Hoarder //<br>Espresso, always //
+                        </p>
+                    </div>
+                </div>
+ 
+            </div>
+        </section>
+ 
+
+    <!-- Newsletter Signup — Postcard Style -->
+    <section class="newsletter-section slide-up">
+        <div class="newsletter-postcard">
+            <div class="nl-left">
+                <h2 class="nl-title">WELCOME<br>TO THE<br>THREAD.</h2>
+                <p class="nl-body">Sign up for field notes, behind-the-scenes stories and early access drops straight to your inbox.</p>
+                <p class="nl-handwriting">Every day is a memory day.</p>
+            </div>
+            <div class="nl-divider"></div>
+            <div class="nl-right">
+                <div class="nl-stamps">
+                    <div class="nl-stamp-rect">
+                        <img src="logo.png" alt="TRT" onerror="this.style.display='none'">
+                    </div>
+                    <div class="nl-circle-postmark">
+                        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="40" cy="40" r="36" stroke="#B92322" stroke-width="1.5"/>
+                            <circle cx="40" cy="40" r="28" stroke="#B92322" stroke-width="0.75"/>
+                            <text x="40" y="34" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" font-weight="700" fill="#B92322" letter-spacing="3">THE RED</text>
+                            <text x="40" y="44" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" font-weight="700" fill="#B92322" letter-spacing="3">THREAD</text>
+                            <text x="40" y="56" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" fill="#B92322" letter-spacing="1">2026</text>
+                        </svg>
+                        <svg class="nl-wavy" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0,12 Q15,0 30,12 T60,12 T90,12 T120,12" stroke="#B92322" stroke-width="1.2" fill="none" opacity="0.55"/>
+                            <path d="M0,22 Q15,10 30,22 T60,22 T90,22 T120,22" stroke="#B92322" stroke-width="1.2" fill="none" opacity="0.55"/>
+                            <path d="M0,32 Q15,20 30,32 T60,32 T90,32 T120,32" stroke="#B92322" stroke-width="1.2" fill="none" opacity="0.55"/>
+                        </svg>
+                    </div>
+                </div>
+                <form class="nl-form" onsubmit="return false;">
+                    <div class="nl-field">
+                        <label class="nl-label">Name:</label>
+                        <input type="text" class="nl-input" placeholder="Your name" autocomplete="name">
+                    </div>
+                    <div class="nl-field">
+                        <label class="nl-label">Email:</label>
+                        <input type="email" class="nl-input" placeholder="your@email.com" autocomplete="email">
+                    </div>
+                    <div class="nl-field">
+                            <label class="nl-label" for="nl-PhoneType">Phone Type:</label>
+                            <input type="text" class="nl-input" id="nl-PhoneType" name="MMERGE7" placeholder="What's your phone?">
+                        </div>
+                    <button type="submit" class="nl-submit">Send it →</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="logo.png" class="footer-logo" alt="The Red Thread" style="color:transparent;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="footer-logo-fallback" style="display:none; font-family:'Inter', sans-serif; color:#B92322; font-size:1.5rem; font-weight:800; margin-bottom:1rem; line-height:1; text-transform:uppercase;">THE RED THREAD</div>
+                <p class="footer-desc"><a href="admin.html" style="text-decoration:none; color:inherit; cursor:default;">From chatting to doing.</a></p>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+            <div class="footer-links">
+                <h4>Connect</h4>
+                <a href="http://www.instagram.com/theredthread.app" target="_blank" rel="noopener">Instagram</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 The Red Thread. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
