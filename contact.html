@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | The Red Thread</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .contact-hero {
+            padding: 120px 5% 60px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            padding: 0 5% 100px;
+        }
+        .contact-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            padding: 40px;
+            border-radius: 2px;
+            box-shadow: 10px 10px 0px rgba(185, 35, 34, 0.05);
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+        }
+        .contact-card::before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 80px;
+            border: 1px dashed #B92322;
+            opacity: 0.3;
+        }
+        .handwritten-note {
+            font-family: 'Caveat', cursive;
+            font-size: 1.8rem;
+            color: #B92322;
+            margin-bottom: 20px;
+        }
+        .contact-method {
+            margin-bottom: 30px;
+        }
+        .contact-method h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        .contact-link {
+            font-size: 1.2rem;
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .contact-link:hover {
+            color: #B92322;
+        }
+        .collab-box {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <nav class="nav-links left-links">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="story.html" class="nav-item">Story</a>
+            <a href="index.html#blog" class="nav-item">Blog</a>
+        </nav>
+        <div class="logo-container">
+            <img src="logo.png" class="brand-logo" alt="The Red Thread">
+            <span class="brand-name">THE RED THREAD</span>
+        </div>
+        <nav class="nav-links right-links">
+            <a href="index.html#download" class="btn-coming-soon">Get Beta Access</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact-hero">
+            <span class="eyebrow">Get in touch</span>
+            <h1 class="hero-title">We're all ears.</h1>
+        </section>
+
+        <section class="contact-container">
+            <div class="contact-card">
+                <p class="handwritten-note">Hey there!</p>
+                
+                <div class="contact-method">
+                    <h3>General Inquiries</h3>
+                    <a href="mailto:theredthreadapp@gmail.com" class="contact-link">theredthreadapp@gmail.com</a>
+                </div>
+
+                <div class="contact-method">
+                    <h3>Follow the Journey</h3>
+                    <a href="http://www.instagram.com/theredthread.app" target="_blank" class="contact-link">@theredthread.app</a>
+                </div>
+
+                <div class="collab-box">
+                    <h3 style="color: #B92322;">Partnerships & Collabs</h3>
+                    <p>Do you want to partner with us or collab? Just pop us a message at <br>
+                    <a href="mailto:theredthreadapp@gmail.com" class="contact-link">theredthreadapp@gmail.com</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-bottom">
+            <p>© 2025 The Red Thread. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
