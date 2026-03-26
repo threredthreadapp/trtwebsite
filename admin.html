@@ -51,6 +51,7 @@
             margin-bottom: 1.5rem;
             text-align: center;
             font-size: 1.2rem;
+            box-sizing: border-box;
         }
         .btn-unlock {
             background: var(--accent-red);
@@ -115,6 +116,7 @@
             font-family: var(--font-sans);
             font-size: 0.9rem;
             background: white;
+            box-sizing: border-box;
         }
         
         .dropzone {
@@ -158,7 +160,7 @@
             padding-top: 3rem;
             border-top: 2px solid #eee;
         }
-        .output-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .output-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
         .output-header h3 { font-size: 0.9rem; margin: 0; text-transform: uppercase; color: var(--accent-red); }
         
         pre {
@@ -182,6 +184,31 @@
             font-weight: 700;
             text-transform: uppercase;
         }
+        .btn-download-mobile {
+            background: #1a1a1a;
+            color: #fff;
+            border: 1px solid #333;
+            padding: 6px 12px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .output-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-left: 0.5rem;
+        }
+        .badge-desktop { background: #e8f0fe; color: #1a56c2; }
+        .badge-mobile  { background: #fde8e8; color: #B92322; }
+
+        .btn-group { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
     </style>
 </head>
 <body>
@@ -197,7 +224,7 @@
     <div class="admin-header">
         <div class="header-left">
             <h1>TRT Editorial Engine</h1>
-            <p class="desc">Generate high-fidelity postcards and premium field notes.</p>
+            <p class="desc">Generate high-fidelity postcards and premium field notes — desktop & mobile.</p>
         </div>
         <a href="index.html" class="btn-close">Close Menu</a>
     </div>
@@ -242,14 +269,38 @@
                 <div class="form-group"><label>Full Article Body (HTML Allowed)</label><textarea id="articleBody" rows="12" placeholder="Support <p>, <h2>, <strong>, etc."></textarea></div>
             </div>
         </div>
-        <button type="button" class="btn-generate" onclick="generateAll()">Generate Board Content</button>
+        <button type="button" class="btn-generate" onclick="generateAll()">⚡ Generate Desktop + Mobile</button>
     </form>
 
     <div id="outputArea" class="output-section" style="display:none;">
-        <div class="output-header"><h3>Postcard Snippet (Paste into index.html)</h3><button class="btn-copy" onclick="copySnippet('postcardCode')">Copy</button></div>
+
+        <!-- POSTCARD SNIPPET -->
+        <div class="output-header">
+            <h3>Postcard Snippet <span class="output-badge badge-desktop">index.html</span></h3>
+            <button class="btn-copy" onclick="copySnippet('postcardCode')">Copy</button>
+        </div>
         <pre id="postcardCode"></pre>
-        <div class="output-header"><h3>Article Page Code (Download as .html)</h3><div class="btn-group"><button class="btn-download" onclick="downloadArticle()">Download .html</button><button class="btn-copy" onclick="copySnippet('articleCode')">Copy</button></div></div>
+
+        <!-- DESKTOP ARTICLE -->
+        <div class="output-header">
+            <h3>Desktop Article <span class="output-badge badge-desktop">Desktop</span></h3>
+            <div class="btn-group">
+                <button class="btn-download" onclick="downloadFile('articleCode', false)">Download Desktop .html</button>
+                <button class="btn-copy" onclick="copySnippet('articleCode')">Copy</button>
+            </div>
+        </div>
         <pre id="articleCode"></pre>
+
+        <!-- MOBILE ARTICLE -->
+        <div class="output-header">
+            <h3>Mobile Article <span class="output-badge badge-mobile">Mobile</span></h3>
+            <div class="btn-group">
+                <button class="btn-download-mobile" onclick="downloadFile('mobileCode', true)">Download Mobile .html</button>
+                <button class="btn-copy" onclick="copySnippet('mobileCode')">Copy</button>
+            </div>
+        </div>
+        <pre id="mobileCode"></pre>
+
     </div>
 
     <script>
@@ -279,28 +330,91 @@
         }
     }
 
-    let generatedFileName = "article-new.html";
+    let desktopFileName = "article-new.html";
+    let mobileFileName  = "article-new-mobile.html";
+
+    // ─── Shared footer HTML ────────────────────────────────────────
+    function footerHTML(mobile) {
+        const pad = mobile ? '40px 5% 24px' : '60px 5% 30px';
+        const mt  = mobile ? '50px' : '80px';
+        const iw  = mobile ? '36' : '40';
+        const fs  = mobile ? '0.9rem' : '0.95rem';
+        const lfs = mobile ? '0.75rem' : '0.8rem';
+        const afs = mobile ? '0.85rem' : '0.9rem';
+        const dir = mobile ? 'flex-direction: column; gap: 24px;' : 'justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px;';
+        const mt2 = mobile ? '32px' : '60px';
+        return `    <footer class="site-footer" style="background: #fff; border-top: 1px solid #eee; padding: ${pad}; margin-top: ${mt};">
+        <div class="footer-content" style="max-width: 1100px; margin: 0 auto; display: flex; ${dir}">
+            <div class="footer-brand">
+                <img src="logo.png" alt="The Red Thread" width="${iw}" style="margin-bottom: ${mobile ? '10px' : '15px'};">
+                <p style="font-family: 'Inter', sans-serif; color: #666; font-size: ${fs};">From chatting to doing.</p>
+            </div>
+            <div>
+                <h4 style="font-size: ${lfs}; text-transform: uppercase; letter-spacing: 2px; color: #B92322; margin-bottom: ${mobile ? '12px' : '20px'};">Legal</h4>
+                <div style="display: flex; flex-direction: column; gap: ${mobile ? '8px' : '10px'};">
+                    <a href="privacy.html" style="color: #000; text-decoration: none; font-size: ${afs};">Privacy Policy</a>
+                    <a href="terms.html" style="color: #000; text-decoration: none; font-size: ${afs};">Terms of Service</a>
+                    <a href="cookies.html" style="color: #000; text-decoration: none; font-size: ${afs};">Cookie Policy</a>
+                </div>
+            </div>
+            <div>
+                <h4 style="font-size: ${lfs}; text-transform: uppercase; letter-spacing: 2px; color: #B92322; margin-bottom: ${mobile ? '12px' : '20px'};">Connect</h4>
+                <div style="display: flex; flex-direction: column; gap: ${mobile ? '8px' : '10px'};">
+                    <a href="http://www.instagram.com/theredthread.app" target="_blank" rel="noopener" style="color: #000; text-decoration: none; font-size: ${afs};">Instagram</a>
+                    <a href="contact.html" style="color: #000; text-decoration: none; font-size: ${afs}; font-weight: 600;">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div style="max-width: 1100px; margin: ${mt2} auto 0; padding-top: ${mobile ? '16px' : '20px'}; border-top: 1px solid #f0f0f0; text-align: center;">
+            <p style="font-size: ${mobile ? '0.75rem' : '0.8rem'}; color: #999;">© 2025 The Red Thread. All rights reserved.</p>
+        </div>
+    </footer>`;
+    }
+
+    // ─── Shared navbar ─────────────────────────────────────────────
+    function navbarHTML(mobile) {
+        const leftLinks = mobile
+            ? `<a href="index.html" class="nav-item">Home</a>`
+            : `<a href="index.html" class="nav-item">Home</a>
+            <a href="story.html" class="nav-item">Story</a>
+            <a href="index.html#blog" class="nav-item" style="color:#B92322;">Blog</a>`;
+        const ctaLabel = mobile ? 'Get Beta' : 'Get Beta Access';
+        return `    <header class="navbar" style="position: relative; border-bottom: 1px solid rgba(0,0,0,0.07);">
+        <nav class="nav-links left-links">
+            ${leftLinks}
+        </nav>
+        <div class="logo-container">
+            <img src="logo.png" class="brand-logo" alt="">
+            <span class="brand-name">THE RED THREAD</span>
+        </div>
+        <nav class="nav-links right-links">
+            <a href="index.html#download" class="btn-coming-soon">${ctaLabel}</a>
+        </nav>
+    </header>`;
+    }
 
     function generateAll() {
         const data = {
             category: document.getElementById('category').value,
             catLabel: document.getElementById('category').options[document.getElementById('category').selectedIndex].text,
-            postImg: document.getElementById('postcardImgName').value || 'placeholder.jpg',
+            postImg:  document.getElementById('postcardImgName').value || 'placeholder.jpg',
             postDate: document.getElementById('postDate').value || 'Oct 12, 2024',
             postTitle: document.getElementById('postTitle').value || 'Title',
-            summary: document.getElementById('overviewSummary').value || '...',
+            summary:  document.getElementById('overviewSummary').value || '...',
             headline: document.getElementById('articleHeadline').value || document.getElementById('postTitle').value || '...',
             subtitle: document.getElementById('articleSubtitle').value || '...',
             readTime: document.getElementById('readTime').value || '5 min read',
-            body: document.getElementById('articleBody').value || '<p>...</p>',
-            heroImg: document.getElementById('heroImgName').value || 'hero.jpg'
+            body:     document.getElementById('articleBody').value || '<p>...</p>',
+            heroImg:  document.getElementById('heroImgName').value || 'hero.jpg'
         };
 
-        const slug = data.headline.toLowerCase().replace(/[^a-z0-0]/g, '-').replace(/-+/g, '-');
-        generatedFileName = "article-" + slug + ".html";
+        const slug = data.headline.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+        desktopFileName = `article-${slug}.html`;
+        mobileFileName  = `article-${slug}-mobile.html`;
 
-        // POSTCARD SNIPPET
-        const postcardSnippet = `<a href="${generatedFileName}" class="postcard-link" data-category="${data.category}">
+        // ── POSTCARD SNIPPET ────────────────────────────────────────
+        const postcardSnippet =
+`<a href="${desktopFileName}" class="postcard-link" data-category="${data.category}">
     <article class="real-postcard slide-up rotated-left">
         <div class="postcard-true">
             <div class="pct-photo"><img src="${data.postImg}" alt=""></div>
@@ -321,8 +435,9 @@
     </article>
 </a>`;
 
-        // FULL ARTICLE PAGE CODE
-        const articleContent = `<!DOCTYPE html>
+        // ── DESKTOP ARTICLE ─────────────────────────────────────────
+        const desktopContent =
+`<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -333,18 +448,8 @@
     <link rel="stylesheet" href="article.css">
 </head>
 <body class="article-body">
-    <header class="navbar" style="position: fixed; border-bottom: 1px solid rgba(0,0,0,0.07);">
-        <nav class="nav-links left-links">
-            <a href="index.html" class="nav-item">Home</a>
-            <a href="story.html" class="nav-item">Story</a>
-            <a href="index.html#blog" class="nav-item" style="color:#B92322;">Blog</a>
-        </nav>
-        <div class="logo-container">
-            <img src="logo.png" class="brand-logo" alt="TRT">
-            <span class="brand-name">THE RED THREAD</span>
-        </div>
-    </header>
-
+    <script>document.body.classList.add('js-enabled');<\/script>
+${navbarHTML(false)}
     <main class="article-main">
         <div class="paper-sheet fade-in">
             <div class="article-meta">
@@ -354,431 +459,97 @@
                 <span class="meta-dot">·</span>
                 <span class="article-read">${data.readTime}</span>
             </div>
-            <h1 class="article-headline">${data.headline}</h1>
-            <p class="biro-annotation">${data.subtitle}</p>
-            <div class="article-hero-img">
+            <h1 class="article-headline slide-up">${data.headline}</h1>
+            <p class="biro-annotation slide-up">${data.subtitle}</p>
+            <div class="article-hero-img slide-up">
                 <img src="${data.heroImg}" alt="">
                 <div class="img-caption biro-caption">Memories from the field ✦</div>
             </div>
-            <article class="article-text">${data.body}</article>
+            <div class="article-body-grid">
+                <article class="article-text">
+${data.body}
+                </article>
+            </div>
             <div class="article-back">
                 <a href="index.html#blog" class="back-link">← Back to Field Notes</a>
             </div>
         </div>
     </main>
+${footerHTML(false)}
+    <script src="script.js"><\/script>
+</body>
+</html>`;
 
-    <footer class="site-footer" style="background: #fff; border-top: 1px solid #eee; padding: 60px 5% 30px; margin-top: 80px;">
-        <div class="footer-content" style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px;">
-            <div class="footer-brand" style="flex: 1; min-width: 250px;">
-                <img src="logo.png" alt="TRT" width="40" style="margin-bottom: 15px;">
-                <p style="font-family: 'Inter', sans-serif; color: #666; font-size: 0.95rem;">From chatting to doing.</p>
+        // ── MOBILE ARTICLE ──────────────────────────────────────────
+        const mobileContent =
+`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>${data.headline} | The Red Thread</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="article-mobile.css">
+</head>
+<body class="article-body">
+    <script>document.body.classList.add('js-enabled');<\/script>
+${navbarHTML(true)}
+    <main class="article-main">
+        <div class="paper-sheet fade-in">
+            <div class="article-meta">
+                <span class="article-category">${data.catLabel}</span>
+                <span class="meta-dot">·</span>
+                <span class="article-date">${data.postDate}</span>
+                <span class="meta-dot">·</span>
+                <span class="article-read">${data.readTime}</span>
             </div>
-            <div class="footer-links" style="flex: 1; min-width: 200px;">
-                <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #B92322; margin-bottom: 20px;">Connect</h4>
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <a href="http://www.instagram.com/theredthread.app" target="_blank" style="color: #000; text-decoration: none;">Instagram</a>
-                    <a href="contact.html" style="color: #000; text-decoration: none; font-weight: 600;">Partner with us / Contact</a>
-                </div>
+            <h1 class="article-headline slide-up">${data.headline}</h1>
+            <p class="biro-annotation slide-up">${data.subtitle}</p>
+            <div class="article-hero-img slide-up">
+                <img src="${data.heroImg}" alt="">
+                <div class="img-caption biro-caption">Memories from the field ✦</div>
+            </div>
+            <div class="article-body-grid">
+                <article class="article-text">
+${data.body}
+                </article>
+            </div>
+            <div class="article-back">
+                <a href="index.html#blog" class="back-link">← Back to Field Notes</a>
             </div>
         </div>
-        <div class="footer-bottom" style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
-            <p style="font-size: 0.8rem; color: #999;">© 2025 The Red Thread. All rights reserved.</p>
-        </div>
-    </footer>
+    </main>
+${footerHTML(true)}
+    <script src="script.js"><\/script>
 </body>
 </html>`;
 
         document.getElementById('postcardCode').innerText = postcardSnippet;
-        document.getElementById('articleCode').innerText = articleContent;
+        document.getElementById('articleCode').innerText  = desktopContent;
+        document.getElementById('mobileCode').innerText   = mobileContent;
         document.getElementById('outputArea').style.display = 'block';
+
+        // Smooth scroll to output
+        setTimeout(() => {
+            document.getElementById('outputArea').scrollIntoView({ behavior: 'smooth' });
+        }, 100);
     }
 
-    function downloadArticle() {
-        const code = document.getElementById('articleCode').innerText;
+    function downloadFile(codeId, isMobile) {
+        const code = document.getElementById(codeId).innerText;
+        const filename = isMobile ? mobileFileName : desktopFileName;
         const blob = new Blob([code], { type: 'text/html' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
-        a.href = url; a.download = generatedFileName; a.click();
+        a.href = url; a.download = filename; a.click();
+        URL.revokeObjectURL(url);
     }
 
     function copySnippet(id) {
         const code = document.getElementById(id).innerText;
         navigator.clipboard.writeText(code).then(() => { alert('Copied!'); });
     }
-</script>
-</body>
-</html>
-            background: white;
-            padding: 3rem;
-            border-radius: 12px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-            text-align: center;
-            width: 90%;
-            max-width: 400px;
-        }
-        .password-box h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 2rem; }
-        .password-box input {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-size: 1.2rem;
-        }
-        .btn-unlock {
-            background: var(--accent-red);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 30px;
-            font-weight: 800;
-            text-transform: uppercase;
-            cursor: pointer;
-            width: 100%;
-            margin-bottom: 1rem;
-        }
-        .btn-cancel {
-            background: none;
-            border: none;
-            color: #888;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
-        .admin-header {
-            border-bottom: 2px solid var(--accent-red);
-            padding-bottom: 1rem;
-            margin-bottom: 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-        .header-left h1 { font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-red); margin: 0; }
-        .header-left p.desc { font-size: 0.9rem; color: #666; margin-top: 0.5rem; }
-        
-        .btn-close {
-            background: none;
-            border: 2px solid #ddd;
-            color: #888;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-        .btn-close:hover { border-color: var(--accent-red); color: var(--accent-red); }
-
-        .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-        
-        h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
-
-        .form-group { margin-bottom: 1.5rem; }
-        label { display: block; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 0.5rem; color: #444; }
-        input, select, textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 4px;
-            font-family: var(--font-sans);
-            font-size: 0.9rem;
-            background: white;
-        }
-        
-        .dropzone {
-            border: 2px dashed rgba(185, 35, 34, 0.15);
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-align: center;
-            background: rgba(255,255,255,0.5);
-            cursor: pointer;
-            margin-bottom: 0.8rem;
-            transition: all 0.2s;
-        }
-        .dropzone.dragover { border-color: var(--accent-red); background: rgba(185,35,34,0.05); }
-        .dropzone p { font-size: 0.75rem; color: #999; margin: 0; }
-        .preview-img {
-            max-width: 100%;
-            max-height: 120px;
-            margin-top: 0.5rem;
-            border-radius: 4px;
-            display: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .btn-generate {
-            background: var(--accent-red);
-            color: white;
-            border: none;
-            padding: 1.2rem 2rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            border-radius: 30px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 1rem;
-            margin-top: 2rem;
-            box-shadow: 0 10px 20px rgba(185, 35, 34, 0.2);
-        }
-        
-        .output-section {
-            margin-top: 5rem;
-            padding-top: 3rem;
-            border-top: 2px solid #eee;
-        }
-        .output-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-        .output-header h3 { font-size: 0.9rem; margin: 0; text-transform: uppercase; color: var(--accent-red); }
-        
-        pre {
-            background: #1a1a1a;
-            color: #d4d4d4;
-            padding: 1.5rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            font-size: 0.75rem;
-            line-height: 1.5;
-            margin-bottom: 3rem;
-            border: 1px solid #333;
-        }
-        .btn-copy, .btn-download {
-            background: #eee;
-            border: 1px solid #ccc;
-            padding: 6px 12px;
-            font-size: 0.7rem;
-            cursor: pointer;
-            border-radius: 4px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-    </style>
-</head>
-<body>
-    <div id="passwordOverlay">
-        <div class="password-box">
-            <h2>Authorized Access Only</h2>
-            <input type="password" id="passInput" placeholder="Password" onkeyup="if(event.keyCode===13) checkPass()">
-            <button class="btn-unlock" onclick="checkPass()">Enter Editor</button>
-            <a href="index.html" class="btn-cancel">Go Back to Site</a>
-        </div>
-    </div>
-
-    <div class="admin-header">
-        <div class="header-left">
-            <h1>TRT Editorial Engine</h1>
-            <p class="desc">Generate high-fidelity postcards and premium field notes.</p>
-        </div>
-        <a href="index.html" class="btn-close">Close Menu</a>
-    </div>
-
-    <form id="editorForm">
-        <div class="admin-grid">
-            <div class="column">
-                <h2>1. Postcard Setup</h2>
-                <div class="form-group">
-                    <label>Postcard Image (Drag & Drop)</label>
-                    <div id="postDrop" class="dropzone" ondrop="handleDrop(event, 'postcardImgName', 'postPreview')" ondragover="event.preventDefault(); this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')">
-                        <p>Drop lifestyle photo here</p>
-                        <img id="postPreview" class="preview-img">
-                    </div>
-                    <input type="text" id="postcardImgName" placeholder="e.g. city-vibe.jpg">
-                </div>
-                <div class="form-group"><label>Category</label>
-                    <select id="category">
-                        <option value="spark-stories">Spark Stories</option>
-                        <option value="the-app">The App</option>
-                        <option value="travel">Travel</option>
-                        <option value="activities">Activities</option>
-                        <option value="movies">Movies</option>
-                    </select>
-                </div>
-                <div class="form-group"><label>Date (Biro Font)</label><input type="text" id="postDate" placeholder="Oct 12, 2024"></div>
-                <div class="form-group"><label>Postcard Title (Inter Font)</label><input type="text" id="postTitle" placeholder="The headline for the card..."></div>
-                <div class="form-group"><label>Postcard Summary (Inter Font)</label><textarea id="overviewSummary" rows="3" placeholder="A brief editorial summary..."></textarea></div>
-            </div>
-            <div class="column">
-                <h2>2. Field Note Setup</h2>
-                <div class="form-group"><label>Hero Image (Drag & Drop)</label>
-                    <div id="heroDrop" class="dropzone" ondrop="handleDrop(event, 'heroImgName', 'heroPreview')" ondragover="event.preventDefault(); this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')">
-                        <p>Drop large hero photo here</p>
-                        <img id="heroPreview" class="preview-img">
-                    </div>
-                    <input type="text" id="heroImgName" placeholder="hero-mountain.jpg">
-                </div>
-                <div class="form-group"><label>Article Headline</label><input type="text" id="articleHeadline" placeholder="Main Title (Same as Postcard Title?)"></div>
-                <div class="form-group"><label>Biro Subtitle</label><input type="text" id="articleSubtitle" placeholder="↳ Handwriting note..."></div>
-                <div class="form-group"><label>Read Time</label><input type="text" id="readTime" placeholder="5 min read"></div>
-                <div class="form-group"><label>Full Article Body (HTML Allowed)</label><textarea id="articleBody" rows="12" placeholder="Support <p>, <h2>, <strong>, etc."></textarea></div>
-            </div>
-        </div>
-        <button type="button" class="btn-generate" onclick="generateAll()">Generate Board Content</button>
-    </form>
-
-    <div id="outputArea" class="output-section" style="display:none;">
-        <div class="output-header"><h3>Postcard Snippet (Paste into index.html)</h3><button class="btn-copy" onclick="copySnippet('postcardCode')">Copy</button></div>
-        <pre id="postcardCode"></pre>
-        <div class="output-header"><h3>Article Page Code (Download as .html)</h3><div class="btn-group"><button class="btn-download" onclick="downloadArticle()">Download .html</button><button class="btn-copy" onclick="copySnippet('articleCode')">Copy</button></div></div>
-        <pre id="articleCode"></pre>
-    </div>
-
-    <script>
-        const AUTH_PASS = "LaraStella@";
-        
-        function checkPass() {
-            const inputField = document.getElementById('passInput');
-            const val = inputField.value.trim();
-            if (val === AUTH_PASS || val.toLowerCase() === AUTH_PASS.toLowerCase()) {
-                document.getElementById('passwordOverlay').style.display = 'none';
-            } else {
-                alert("Incorrect password.");
-                inputField.value = '';
-                inputField.focus();
-            }
-        }
-
-        function handleDrop(e, inputId, previewId) {
-            e.preventDefault();
-            e.currentTarget.classList.remove('dragover');
-            const file = e.dataTransfer.files[0];
-            if (file && file.type.startsWith('image/')) {
-                document.getElementById(inputId).value = file.name;
-                const reader = new FileReader();
-                reader.onload = (ev) => {
-                    const img = document.getElementById(previewId);
-                    img.src = ev.target.result;
-                    img.style.display = 'block';
-                    e.currentTarget.querySelector('p').style.display = 'none';
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        let generatedFileName = "article-new.html";
-        function generateAll() {
-            const data = {
-                category: document.getElementById('category').value,
-                catLabel: document.getElementById('category').options[document.getElementById('category').selectedIndex].text,
-                postImg: document.getElementById('postcardImgName').value || 'placeholder.jpg',
-                postDate: document.getElementById('postDate').value || 'Oct 12, 2024',
-                postTitle: document.getElementById('postTitle').value || 'Title',
-                summary: document.getElementById('overviewSummary').value || '...',
-                headline: document.getElementById('articleHeadline').value || document.getElementById('postTitle').value || '...',
-                subtitle: document.getElementById('articleSubtitle').value || '...',
-                readTime: document.getElementById('readTime').value || '5 min read',
-                body: document.getElementById('articleBody').value || '<p>...</p>',
-                heroImg: document.getElementById('heroImgName').value || 'hero.jpg'
-            };
-            const slug = data.headline.toLowerCase().replace(/[^a-z0-0]/g, '-').replace(/-+/g, '-');
-            generatedFileName = "article-" + slug + ".html";
-
-            const postcardSnippet = '<!-- Postcard -->\n' +
-'<a href="' + generatedFileName + '" class="postcard-link" data-category="' + data.category + '">\n' +
-'    <article class="real-postcard slide-up rotated-left">\n' +
-'        <div class="postcard-true">\n' +
-'            <div class="pct-photo"><img src="images/' + data.postImg + '" alt=""></div>\n' +
-'            <div class="pct-back">\n' +
-'                <div class="pct-stamp-tag">\n' +
-'                    <div class="pct-stamp-inner">\n' +
-'                        <img src="stamp-knot.png" alt="Stamp">\n' +
-'                    </div>\n' +
-'                </div>\n' +
-'                <div class="pct-header">\n' +
-'                    <span class="pct-category">' + data.catLabel.toUpperCase() + '</span>\n' +
-'                </div>\n' +
-'                <div class="pct-content">\n' +
-'                    <h3 class="pct-article-title">' + data.postTitle + '</h3>\n' +
-'                    <p class="pct-summary">' + data.summary.replace(/\n/g, '<br>') + '</p>\n' +
-'                </div>\n' +
-'                <div class="pct-footer">\n' +
-'                    <span class="pct-date">' + data.postDate + '</span>\n' +
-'                </div>\n' +
-'            </div>\n' +
-'        </div>\n' +
-'    </article>\n' +
-'</a>';
-
-            const articleContent = "<!DOCTYPE html>\n" +
-"<html lang=\"en\">\n" +
-"<head>\n" +
-"    <meta charset=\"UTF-8\">\n" +
-"    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-"    <title>Field Notes | " + data.headline + "</title>\n" +
-"    <link href=\"https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Inter:wght@400;700;800&display=swap\" rel=\"stylesheet\">\n" +
-"    <link rel=\"stylesheet\" href=\"styles.css\">\n" +
-"    <link rel=\"stylesheet\" href=\"article.css\">\n" +
-"</head>\n" +
-"<body>\n" +
-"    <script>document.body.classList.add(\'js-enabled\');<\/script>\n" +
-"    <header class=\"navbar\" style=\"position: relative; border-bottom: 1px solid rgba(0,0,0,0.07);\">\n" +
-"        <nav class=\"nav-links left-links\">\n" +
-"            <a href=\"index.html\" class=\"nav-item\">Home</a>\n" +
-"            <a href=\"story.html\" class=\"nav-item\">Story</a>\n" +
-"            <a href=\"index.html#blog\" class=\"nav-item\" style=\"color:#B92322;\">Blog</a>\n" +
-"        </nav>\n" +
-"        <div class=\"logo-container\">\n" +
-"            <img src=\"logo.png\" class=\"brand-logo\" alt=\"\">\n" +
-"            <span class=\"brand-name\">THE RED THREAD</span>\n" +
-"        </div>\n" +
-"        <nav class=\"nav-links right-links\">\n" +
-"            <a href=\"index.html#download\" class=\"btn-coming-soon\">Get Beta Access</a>\n" +
-"        </nav>\n" +
-"    </header>\n" +
-"    <main class=\"article-main\">\n" +
-"        <div class=\"paper-sheet fade-in\">\n" +
-"            <div class=\"article-meta\">\n" +
-"                <span class=\"article-category\">" + data.catLabel + "</span>\n" +
-"                <span class=\"meta-dot\">·</span>\n" +
-"                <span class=\"article-date\">" + data.addrTo + "</span>\n" +
-"                <span class=\"meta-dot\">·</span>\n" +
-"                <span class=\"article-read\">" + data.readTime + "</span>\n" +
-"            </div>\n" +
-"            <h1 class=\"article-headline slide-up\">" + data.headline.replace(/ /g, "<br>") + "</h1>\n" +
-"            <p class=\"biro-annotation slide-up\">" + data.subtitle + "</p>\n" +
-"            <div class=\"article-hero-img slide-up\">\n" +
-"                <img src=\"images/" + data.heroImg + "\" alt=\"\">\n" +
-"                <div class=\"img-caption biro-caption\">Memories from the field ✦</div>\n" +
-"            </div>\n" +
-"            <div class=\"article-body-grid\">\n" +
-"                <article class=\"article-text\">" + data.body + "</article>\n" +
-"            </div>\n" +
-"            <div class=\"article-back\">\n" +
-"                <a href=\"index.html#blog\" class=\"back-link\">← Back to Field Notes</a>\n" +
-"            </div>\n" +
-"        </div>\n" +
-"    </main>\n" +
-"    <footer class=\"site-footer\">\n" +
-"        <div class=\"footer-content\">\n" +
-"            <p class=\"footer-desc\"><a href=\"admin.html\">From chatting to doing.</a></p>\n" +
-"        </div>\n" +
-"    </footer>\n" +
-"    <script src=\"script.js\"><\/script>\n" +
-"</body>\n" +
-"</html>";
-
-            document.getElementById('postcardCode').innerText = postcardSnippet;
-            document.getElementById('articleCode').innerText = articleContent;
-            document.getElementById('outputArea').style.display = 'block';
-            window.scrollTo({ top: document.getElementById('outputArea').offsetTop - 50, behavior: "smooth" });
-        }
-
-        function downloadArticle() {
-            const code = document.getElementById('articleCode').innerText;
-            const blob = new Blob([code], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url; a.download = generatedFileName; a.click();
-            URL.revokeObjectURL(url);
-        }
-
-        function copySnippet(id) {
-            const code = document.getElementById(id).innerText;
-            navigator.clipboard.writeText(code).then(() => { alert('Copied to clipboard!'); });
-        }
     </script>
 </body>
 </html>

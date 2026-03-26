@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Field Notes | From Chatting to Actually Doing It</title>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="article.css">
+    <link rel="stylesheet" href="article-mobile.css">
     <script>
-  if (window.innerWidth < 768 || /Mobi|Android/i.test(navigator.userAgent)) {
-    const mobilePage = location.pathname.replace('.html', '-mobile.html');
-    location.replace(mobilePage);
+  if (window.innerWidth >= 768 && !/Mobi|Android/i.test(navigator.userAgent)) {
+    const desktopPage = location.pathname.replace('-mobile.html', '.html');
+    location.replace(desktopPage);
   }
 </script>
 </head>
@@ -19,17 +19,16 @@
     <header class="navbar" style="position: relative; border-bottom: 1px solid rgba(0,0,0,0.07);">
         <nav class="nav-links left-links">
             <a href="index.html" class="nav-item">Home</a>
-            <a href="story.html" class="nav-item">Story</a>
-            <a href="index.html#blog" class="nav-item" style="color:#B92322;">Blog</a>
         </nav>
         <div class="logo-container">
             <img src="logo.png" class="brand-logo" alt="">
             <span class="brand-name">THE RED THREAD</span>
         </div>
         <nav class="nav-links right-links">
-            <a href="index.html#download" class="btn-coming-soon">Get Beta Access</a>
+            <a href="index.html#download" class="btn-coming-soon">Get Beta</a>
         </nav>
     </header>
+
     <main class="article-main">
         <div class="paper-sheet fade-in">
             <div class="article-meta">
@@ -42,13 +41,13 @@
             <h1 class="article-headline slide-up">From Chatting<br>to Actually<br><em>Doing</em> It.</h1>
             <p class="biro-annotation slide-up">↳ How The Red Thread turns conversation into action</p>
             <div class="article-hero-img slide-up">
-                <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=1200&q=80" alt="">
+                <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=900&q=80" alt="">
                 <div class="img-caption biro-caption">Somewhere between the plan and the moment ✦</div>
             </div>
             <div class="article-body-grid">
                 <article class="article-text">
                     <p>Every relationship has that moment — you're mid-conversation, excited about a restaurant, a trip, a film, a Saturday afternoon activity — and then life gets in the way. The chat thread drifts down. The plan evaporates. The Red Thread was built to stop that exact moment from happening.</p>
-                    
+
                     <div class="biro-callout">
                         "The plan evaporates. We built tools to catch it."
                     </div>
@@ -65,36 +64,35 @@
             </div>
         </div>
     </main>
-   <footer class="site-footer" style="background: #fff; border-top: 1px solid #eee; padding: 60px 5% 30px; margin-top: 80px;">
-    <div class="footer-content" style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px;">
-        
-        <div class="footer-brand" style="flex: 1; min-width: 250px;">
-            <img src="logo.png" class="footer-logo" alt="The Red Thread" width="40" style="margin-bottom: 15px;">
-            <p class="footer-desc" style="font-family: 'Inter', sans-serif; color: #666; font-size: 0.95rem;">From chatting to doing.</p>
-        </div>
 
-        <div class="footer-links" style="flex: 1; min-width: 200px;">
-            <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #B92322; margin-bottom: 20px;">Legal</h4>
-            <div style="display: flex; flex-direction: column; gap: 10px;">
-                <a href="privacy.html" style="color: #000; text-decoration: none; font-size: 0.9rem;">Privacy Policy</a>
-                <a href="terms.html" style="color: #000; text-decoration: none; font-size: 0.9rem;">Terms of Service</a>
-                <a href="cookies.html" style="color: #000; text-decoration: none; font-size: 0.9rem;">Cookie Policy</a>
+    <footer class="site-footer" style="background: #fff; border-top: 1px solid #eee; padding: 40px 5% 24px; margin-top: 50px;">
+        <div class="footer-content" style="max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px;">
+            <div class="footer-brand">
+                <img src="logo.png" alt="The Red Thread" width="36" style="margin-bottom: 10px;">
+                <p style="font-family: 'Inter', sans-serif; color: #666; font-size: 0.9rem;">From chatting to doing.</p>
+            </div>
+            <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+                <div>
+                    <h4 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #B92322; margin-bottom: 12px;">Legal</h4>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <a href="privacy.html" style="color: #000; text-decoration: none; font-size: 0.85rem;">Privacy Policy</a>
+                        <a href="terms.html" style="color: #000; text-decoration: none; font-size: 0.85rem;">Terms of Service</a>
+                        <a href="cookies.html" style="color: #000; text-decoration: none; font-size: 0.85rem;">Cookie Policy</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #B92322; margin-bottom: 12px;">Connect</h4>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <a href="http://www.instagram.com/theredthread.app" target="_blank" rel="noopener" style="color: #000; text-decoration: none; font-size: 0.85rem;">Instagram</a>
+                        <a href="contact.html" style="color: #000; text-decoration: none; font-size: 0.85rem; font-weight: 600;">Contact Us</a>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="footer-links" style="flex: 1; min-width: 200px;">
-            <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #B92322; margin-bottom: 20px;">Connect</h4>
-            <div style="display: flex; flex-direction: column; gap: 10px;">
-                <a href="http://www.instagram.com/theredthread.app" target="_blank" rel="noopener" style="color: #000; text-decoration: none; font-size: 0.9rem;">Instagram</a>
-                <a href="contact.html" style="color: #000; text-decoration: none; font-size: 0.9rem; font-weight: 600;">Contact Us</a>
-            </div>
+        <div style="margin-top: 32px; padding-top: 16px; border-top: 1px solid #f0f0f0; text-align: center;">
+            <p style="font-size: 0.75rem; color: #999;">© 2025 The Red Thread. All rights reserved.</p>
         </div>
-    </div>
-
-    <div class="footer-bottom" style="max-width: 1100px; margin: 60px auto 0; padding-top: 20px; border-top: 1px solid #f0f0f0; text-align: center;">
-        <p style="font-size: 0.8rem; color: #999;">© 2025 The Red Thread. All rights reserved.</p>
-    </div>
-</footer>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Field Notes | Collaborative Watchlists</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="article-mobile.css">
+    <script>
+  if (window.innerWidth >= 768 && !/Mobi|Android/i.test(navigator.userAgent)) {
+    const desktopPage = location.pathname.replace('-mobile.html', '.html');
+    location.replace(desktopPage);
+  }
+</script>
+</head>
+<body class="article-body">
+    <script>document.body.classList.add('js-enabled');</script>
+    <header class="navbar" style="position: relative; border-bottom: 1px solid rgba(0,0,0,0.07);">
+        <nav class="nav-links left-links">
+            <a href="index.html" class="nav-item">Home</a>
+        </nav>
+        <div class="logo-container">
+            <img src="logo.png" class="brand-logo" alt="">
+            <span class="brand-name">THE RED THREAD</span>
+        </div>
+        <nav class="nav-links right-links">
+            <a href="index.html#download" class="btn-coming-soon">Get Beta</a>
+        </nav>
+    </header>
+
+    <main class="article-main">
+        <div class="paper-sheet fade-in">
+            <div class="article-meta">
+                <span class="article-category">Movies</span>
+                <span class="meta-dot">·</span>
+                <span class="article-date">October 15, 2024</span>
+                <span class="meta-dot">·</span>
+                <span class="article-read">4 min read</span>
+            </div>
+            <h1 class="article-headline slide-up">Cinema<br>Without the<br><em>Scroll</em>.</h1>
+            <p class="biro-annotation slide-up">↳ No more "what should we watch?" debates</p>
+            <div class="article-hero-img slide-up">
+                <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=900&q=80" alt="">
+                <div class="img-caption biro-caption">Quiet moments, shared stories ✦</div>
+            </div>
+            <div class="article-body-grid">
+                <article class="article-text">
+                    <p>We've all been there. You sit down to watch a movie, and 45 minutes later, you're still scrolling through streaming tiles. The Red Thread ends the choice paralysis by merging your watchlists into a single, collaborative thread of intent.</p>
+
+                    <div class="biro-callout">
+                        "Merge your intent into a single thread."
+                    </div>
+
+                    <h2 class="article-h2">The Shared Ledger</h2>
+                    <p>When you add a movie, it doesn't just sit in a list. TRT cross-references it with your group's taste profile. When everyone is free, the Spark Engine suggests the perfect overlap. Decision made before the popcorn is even in the microwave.</p>
+                </article>
+            </div>
+            <div class="article-back">
+                <a href="index.html#blog" class="back-link">← Back to Field Notes</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer" style="background: #fff; border-top: 1px solid #eee; padding: 40px 5% 24px; margin-top: 50px;">
+        <div class="footer-content" style="max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px;">
+            <div class="footer-brand">
+                <img src="logo.png" alt="The Red Thread" width="36" style="margin-bottom: 10px;">
+                <p style="font-family: 'Inter', sans-serif; color: #666; font-size: 0.9rem;">From chatting to doing.</p>
+            </div>
+            <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+                <div>
+                    <h4 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #B92322; margin-bottom: 12px;">Legal</h4>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <a href="privacy.html" style="color: #000; text-decoration: none; font-size: 0.85rem;">Privacy Policy</a>
+                        <a href="terms.html" style="color: #000; text-decoration: none; font-size: 0.85rem;">Terms of Service</a>
+                        <a href="cookies.html" style="color: #000; text-decoration: none; font-size: 0.85rem;">Cookie Policy</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #B92322; margin-bottom: 12px;">Connect</h4>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <a href="http://www.instagram.com/theredthread.app" target="_blank" rel="noopener" style="color: #000; text-decoration: none; font-size: 0.85rem;">Instagram</a>
+                        <a href="contact.html" style="color: #000; text-decoration: none; font-size: 0.85rem; font-weight: 600;">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 32px; padding-top: 16px; border-top: 1px solid #f0f0f0; text-align: center;">
+            <p style="font-size: 0.75rem; color: #999;">© 2025 The Red Thread. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
