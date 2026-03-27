@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>The Red Thread</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles-mobile.css">
+    <script>
+        if (window.innerWidth >= 768 && !/Mobi|Android/i.test(navigator.userAgent)) {
+            location.replace('index.html');
+        }
+    </script>
+</head>
+<body>
+    <script>document.body.classList.add('js-enabled');</script>
+
+    <header class="navbar">
+        <nav class="nav-links left-links"></nav>
+        <div class="logo-container">
+            <img src="logo.png" class="brand-logo" alt="The Red Thread" onerror="this.style.display='none';">
+            <span class="brand-name">THE RED THREAD</span>
+        </div>
+        <nav class="nav-links right-links">
+            <a href="#download" class="btn-coming-soon">Get Beta</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Hero -->
+        <section class="hero-section" id="download">
+            <div class="hero-content fade-in">
+                <span class="eyebrow">The Red Thread</span>
+                <h1 class="hero-title">From chatting<br>to <em>doing.</em></h1>
+                <p class="hero-subtitle">Turn ideas into real moments with friends and loved ones. No more endless group chats, missed plans, or forgotten memories.</p>
+                <div class="hero-cta slide-up delay-1">
+                    <a href="https://testflight.apple.com/join/S1qM5U5M" class="btn-primary" target="_blank" rel="noopener">
+                        <span class="btn-icon"></span> Download iOS Beta
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=com.theredthread.app" class="btn-secondary" target="_blank" rel="noopener">
+                        Download Android Beta
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Drivers -->
+        <section class="value-drivers-section">
+            <div class="section-header slide-up">
+                <h2 class="section-title">Affiliate Value Drivers</h2>
+                <p class="section-tagline">Creating prime conversion windows for lifestyle, entertainment, and retail brands.</p>
+            </div>
+            <div class="drivers-grid">
+                <div class="driver-card slide-up delay-1">
+                    <div class="card-icon">⚡</div>
+                    <h3 class="card-title">The Spark Engine</h3>
+                    <p class="card-desc">Generates instant activity ideas (Dates, Hangouts, Travel), creating a direct funnel for localised bookings and supplies.</p>
+                </div>
+                <div class="driver-card slide-up delay-2">
+                    <div class="card-icon">🎬</div>
+                    <h3 class="card-title">Threads & Movies</h3>
+                    <p class="card-desc">Shared bucket lists and watchlists provide a data-rich environment for targeted movie, tech, and gear recommendations.</p>
+                </div>
+                <div class="driver-card slide-up delay-3">
+                    <div class="card-icon">🎯</div>
+                    <h3 class="card-title">Actionable Memory-Making</h3>
+                    <p class="card-desc">Our users don't just browse; they plan. We capture the "ready-to-buy" phase of the customer journey.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog -->
+        <section class="blog-section" id="blog">
+            <div class="section-header slide-up">
+                <h2 class="section-title">Field Notes</h2>
+                <p class="section-tagline">Stories from the thread, tips on curating memories, and community highlights.</p>
+            </div>
+            <div class="blog-filters fade-in">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="spark-stories">Spark Stories</button>
+                <button class="filter-btn" data-filter="the-app">The App</button>
+                <button class="filter-btn" data-filter="travel">Travel</button>
+                <button class="filter-btn" data-filter="activities">Activities</button>
+                <button class="filter-btn" data-filter="movies">Movies</button>
+            </div>
+            <div class="blog-container">
+
+                <a href="article-1-mobile.html" class="postcard-link" data-category="activities">
+                    <article class="real-postcard slide-up delay-1">
+                        <div class="postcard-true">
+                            <div class="pct-photo">
+                                <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=400&q=80" alt="Travel">
+                            </div>
+                            <div class="pct-back">
+                                <div class="pct-header"><span class="pct-category">Activities</span></div>
+                                <div class="pct-content">
+                                    <h3 class="pct-article-title">Making Plans Real</h3>
+                                    <p class="pct-summary">Transition digital plans into real-world adventures.</p>
+                                </div>
+                                <div class="pct-footer"><span class="pct-date">Oct 12, 2024</span></div>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+
+                <a href="article-2-mobile.html" class="postcard-link" data-category="the-app">
+                    <article class="real-postcard slide-up delay-2">
+                        <div class="postcard-true">
+                            <div class="pct-photo">
+                                <img src="https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&w=400&q=80" alt="The App">
+                            </div>
+                            <div class="pct-back">
+                                <div class="pct-header"><span class="pct-category">The App</span></div>
+                                <div class="pct-content">
+                                    <h3 class="pct-article-title">Collab Watchlists</h3>
+                                    <p class="pct-summary">Collaborative tracking leads to better shared histories.</p>
+                                </div>
+                                <div class="pct-footer"><span class="pct-date">Nov 04, 2024</span></div>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+
+                <a href="article-3-mobile.html" class="postcard-link" data-category="travel">
+                    <article class="real-postcard slide-up delay-3">
+                        <div class="postcard-true">
+                            <div class="pct-photo">
+                                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=400&q=80" alt="Travel">
+                            </div>
+                            <div class="pct-back">
+                                <div class="pct-header"><span class="pct-category">Travel</span></div>
+                                <div class="pct-content">
+                                    <h3 class="pct-article-title">Actionable Memory</h3>
+                                    <p class="pct-summary">Browse less, experience more.</p>
+                                </div>
+                                <div class="pct-footer"><span class="pct-date">Nov 18, 2024</span></div>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Bottom note -->
+        <section class="bottom-line-section">
+            <div class="bottom-line-container slide-up delay-1">
+                <h2>A little note from the team</h2>
+                <p>Thanks for joining our adventure! Every great journey is better with friends. We'd love to see where the Thread takes you.</p>
+            </div>
+        </section>
+
+        <!-- Instagram -->
+        <section class="instagram-section">
+            <div class="instagram-header slide-up">
+                <h3>Follow the thread.</h3>
+                <a href="http://www.instagram.com/theredthread.app" target="_blank" rel="noopener" class="ig-link">@theredthread.app</a>
+            </div>
+            <div class="slide-up delay-1">
+                <behold-widget feed-id="dMqKopKLouHYZ3dwnkK8"></behold-widget>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section slide-up">
+        <div class="newsletter-postcard">
+            <div class="nl-left">
+                <h2 class="nl-title">WELCOME<br>TO THE<br>THREAD.</h2>
+                <p class="nl-body">Sign up for field notes, behind-the-scenes stories and early access drops straight to your inbox.</p>
+                <p class="nl-handwriting">Every day is a memory day.</p>
+            </div>
+            <div class="nl-right">
+                <form class="nl-form" action="https://gmail.us7.list-manage.com/subscribe/post?u=6e34396abd0d0e8d42dafba27&amp;id=0768df0504&amp;f_id=009f66e0f0" method="post" target="_blank" novalidate>
+                    <div class="nl-field">
+                        <label class="nl-label" for="nl-fname">Name:</label>
+                        <input type="text" class="nl-input" id="nl-fname" name="FNAME" placeholder="Your name" autocomplete="name">
+                    </div>
+                    <div class="nl-field">
+                        <label class="nl-label" for="nl-email">Email:</label>
+                        <input type="email" class="nl-input" id="nl-email" name="EMAIL" placeholder="your@email.com" autocomplete="email" required>
+                    </div>
+                    <div class="nl-field nl-field-select">
+                        <label class="nl-label">Phone Type:</label>
+                        <div class="nl-select-wrapper">
+                            <input type="hidden" id="nl-PhoneType" name="MMERGE7" value="">
+                            <button type="button" class="nl-select-btn" onclick="togglePhoneDropdown()">
+                                <span id="nl-select-display">What's your phone?</span>
+                                <svg class="nl-select-arrow" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="#B92322" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            </button>
+                            <div class="nl-dropdown" id="nl-dropdown">
+                                <button type="button" class="nl-option" onclick="selectPhone('Apple')">Apple (iOS)</button>
+                                <button type="button" class="nl-option" onclick="selectPhone('Android')">Android</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div aria-hidden="true" style="position:absolute;left:-5000px;">
+                        <input type="text" name="b_6e34396abd0d0e8d42dafba27_0768df0504" tabindex="-1" value="">
+                    </div>
+                    <button type="submit" class="nl-submit">Send it →</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="logo.png" class="footer-logo" alt="The Red Thread" onerror="this.style.display='none';">
+                <p class="footer-desc">From chatting to doing.</p>
+            </div>
+            <div class="legal-links">
+                <a href="privacy-mobile.html">Privacy Policy</a>
+                <a href="terms-mobile.html">Terms of Service</a>
+                <a href="cookies-mobile.html">Cookie Policy</a>
+            </div>
+            <div class="footer-links">
+                <h4>Connect</h4>
+                <a href="http://www.instagram.com/theredthread.app" target="_blank" rel="noopener">Instagram</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 The Red Thread. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        (() => {
+            const d = document, s = d.createElement("script"); s.type = "module";
+            s.src = "https://w.behold.so/widget.js"; d.head.append(s);
+        })();
+    </script>
+    <script>
+        function togglePhoneDropdown() {
+            document.querySelector('.nl-select-btn').classList.toggle('open');
+            document.getElementById('nl-dropdown').classList.toggle('open');
+        }
+        function selectPhone(value) {
+            document.getElementById('nl-PhoneType').value = value;
+            document.getElementById('nl-select-display').textContent = value === 'Apple' ? '🍎 Apple (iOS)' : '🤖 Android';
+            document.querySelector('.nl-select-btn').classList.remove('open');
+            document.querySelector('.nl-select-btn').classList.add('selected');
+            document.getElementById('nl-dropdown').classList.remove('open');
+        }
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.nl-select-wrapper')) {
+                document.querySelector('.nl-select-btn')?.classList.remove('open');
+                document.getElementById('nl-dropdown')?.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>

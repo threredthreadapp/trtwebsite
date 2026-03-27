@@ -72,6 +72,11 @@
             border-top: 1px solid #eee;
         }
     </style>
+    <script>
+  if (window.innerWidth < 768 || /Mobi|Android/i.test(navigator.userAgent)) {
+    location.replace(location.pathname.replace('.html', '-mobile.html'));
+  }
+</script>
 </head>
 <body>
     <header class="navbar">

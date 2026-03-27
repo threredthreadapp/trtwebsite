@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Contact Us | The Red Thread</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles-mobile.css">
+    <script>
+        if (window.innerWidth >= 768 && !/Mobi|Android/i.test(navigator.userAgent)) {
+            location.replace('contact.html');
+        }
+    </script>
+    <style>
+        .contact-hero {
+            padding: 100px 6% 2rem;
+            text-align: center;
+        }
+        .contact-hero .eyebrow {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 800;
+            color: #B92322;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.75rem;
+        }
+        .contact-hero .hero-title {
+            font-size: clamp(2.8rem, 11vw, 4rem);
+            font-weight: 800;
+            line-height: 1.0;
+            letter-spacing: -1.5px;
+            color: #2A2422;
+            margin: 0;
+        }
+
+        .contact-container {
+            padding: 1.5rem 6% 4rem;
+        }
+
+        .contact-card {
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            padding: 2rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 6px 6px 0px rgba(185, 35, 34, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Stamp corner decoration */
+        .contact-card::before {
+            content: "";
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 44px;
+            height: 58px;
+            border: 1px dashed #B92322;
+            opacity: 0.25;
+            border-radius: 2px;
+        }
+
+        .handwritten-note {
+            font-family: 'Caveat', cursive;
+            font-size: 1.9rem;
+            color: #B92322;
+            margin-bottom: 1.75rem;
+            display: block;
+        }
+
+        .contact-method {
+            margin-bottom: 1.75rem;
+        }
+        .contact-method h3 {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #aaa;
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+        }
+        .contact-link {
+            font-size: 1.05rem;
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+            word-break: break-all;
+            transition: color 0.2s;
+        }
+        .contact-link:active { color: #B92322; }
+
+        .collab-box {
+            margin-top: 2rem;
+            padding-top: 1.75rem;
+            border-top: 1px solid #eee;
+        }
+        .collab-box h3 {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #B92322;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+        .collab-box p {
+            font-size: 0.95rem;
+            color: #6B625E;
+            line-height: 1.7;
+        }
+
+        /* Tap-friendly mailto button */
+        .contact-btn {
+            display: block;
+            margin-top: 1.25rem;
+            background: #B92322;
+            color: #fff;
+            text-align: center;
+            padding: 0.85rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            letter-spacing: 0.3px;
+        }
+        .contact-btn:active { background: #8F1716; }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <nav class="nav-links left-links"></nav>
+        <div class="logo-container">
+            <img src="logo.png" class="brand-logo" alt="The Red Thread" onerror="this.style.display='none';">
+            <span class="brand-name">THE RED THREAD</span>
+        </div>
+        <nav class="nav-links right-links">
+            <a href="index-mobile.html#download" class="btn-coming-soon">Get Beta</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact-hero fade-in">
+            <span class="eyebrow">Get in touch</span>
+            <h1 class="hero-title">We're all ears.</h1>
+        </section>
+
+        <section class="contact-container">
+            <div class="contact-card slide-up">
+                <span class="handwritten-note">Hey there!</span>
+
+                <div class="contact-method">
+                    <h3>General Inquiries</h3>
+                    <a href="mailto:theredthreadapp@gmail.com" class="contact-link">theredthreadapp@gmail.com</a>
+                </div>
+
+                <div class="contact-method">
+                    <h3>Follow the Journey</h3>
+                    <a href="http://www.instagram.com/theredthread.app" target="_blank" rel="noopener" class="contact-link">@theredthread.app</a>
+                </div>
+
+                <div class="collab-box">
+                    <h3>Partnerships &amp; Collabs</h3>
+                    <p>Do you want to partner with us or collab? Just pop us a message.</p>
+                    <a href="mailto:theredthreadapp@gmail.com" class="contact-btn">✉ Send us an email</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="logo.png" class="footer-logo" alt="The Red Thread" onerror="this.style.display='none';">
+                <p class="footer-desc">From chatting to doing.</p>
+            </div>
+            <div class="legal-links">
+                <a href="privacy-mobile.html">Privacy Policy</a>
+                <a href="terms-mobile.html">Terms of Service</a>
+                <a href="cookies-mobile.html">Cookie Policy</a>
+            </div>
+            <div class="footer-links">
+                <h4>Connect</h4>
+                <a href="http://www.instagram.com/theredthread.app" target="_blank" rel="noopener">Instagram</a>
+                <a href="contact-mobile.html">Contact Us</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 The Red Thread. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

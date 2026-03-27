@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Cookie Policy | The Red Thread</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles-mobile.css">
+    <script>
+        if (window.innerWidth >= 768 && !/Mobi|Android/i.test(navigator.userAgent)) {
+            location.replace('cookies.html');
+        }
+    </script>
+</head>
+<body>
+
+    <header class="navbar">
+        <nav class="nav-links left-links"></nav>
+        <div class="logo-container">
+            <img src="logo.png" class="brand-logo" alt="The Red Thread" onerror="this.style.display='none';">
+            <span class="brand-name">THE RED THREAD</span>
+        </div>
+        <nav class="nav-links right-links">
+            <a href="index-mobile.html#download" class="btn-coming-soon">Get Beta</a>
+        </nav>
+    </header>
+
+    <main class="legal-page">
+        <h1>Cookie Policy</h1>
+        <span class="last-updated">Last updated: March 25, 2026</span>
+
+        <div class="legal-highlight">
+            <p>This Cookie Policy explains how The Red Thread uses cookies and similar technologies when you visit our website or use our app.</p>
+        </div>
+
+        <h2>1. What are cookies?</h2>
+        <p>Cookies are small data files placed on your device when you visit a website. They help websites remember your preferences and understand how you interact with the service. They are widely used to make websites work more efficiently.</p>
+
+        <h2>2. Types of cookies we use</h2>
+        <div class="cookie-table-wrap">
+            <table class="cookie-table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Essential</strong></td>
+                        <td>Necessary for the website to function properly (e.g. authentication, session management).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Analytics</strong></td>
+                        <td>Help us understand how visitors use the site so we can improve it.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marketing</strong></td>
+                        <td>Used to show you relevant content and measure the effectiveness of our campaigns.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>3. Managing cookies</h2>
+        <p>You can control and manage cookies in your browser settings. Please note that disabling certain cookies may affect the functionality of the app. You can also opt out via the banner shown on your first visit.</p>
+
+        <h2>4. Third-party cookies</h2>
+        <p>Some features of our service use third-party cookies, such as analytics tools. These cookies are subject to the respective privacy policies of those third parties. We do not control these cookies directly.</p>
+
+        <h2>5. Changes to this policy</h2>
+        <p>We may update this Cookie Policy from time to time. Any changes will be posted on this page with an updated date.</p>
+
+        <h2>6. Contact us</h2>
+        <p>If you have questions about our use of cookies, please email us at <strong>threredthreadapp@gmail.com</strong>.</p>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="logo.png" class="footer-logo" alt="The Red Thread" onerror="this.style.display='none';">
+                <p class="footer-desc">From chatting to doing.</p>
+            </div>
+            <div class="legal-links">
+                <a href="privacy-mobile.html">Privacy Policy</a>
+                <a href="terms-mobile.html">Terms of Service</a>
+                <a href="cookies-mobile.html">Cookie Policy</a>
+            </div>
+            <div class="footer-links">
+                <h4>Connect</h4>
+                <a href="http://www.instagram.com/theredthread.app" target="_blank" rel="noopener">Instagram</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 The Red Thread. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Cookie consent banner -->
+    <div id="cookie-banner">
+        <div>We use cookies to improve your experience. Tap "Accept" to agree.</div>
+        <div class="banner-buttons">
+            <button class="btn-decline" onclick="closeBanner()">Decline</button>
+            <button class="btn-accept" onclick="acceptCookies()">Accept All</button>
+        </div>
+    </div>
+
+    <script>
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            navbar.style.boxShadow = window.scrollY > 40
+                ? '0 2px 12px rgba(0,0,0,0.08)'
+                : '0 1px 0 rgba(0,0,0,0.06)';
+        });
+
+        window.onload = function() {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                document.getElementById('cookie-banner').style.visibility = 'visible';
+            }
+        };
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+        function closeBanner() {
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

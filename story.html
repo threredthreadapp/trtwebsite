@@ -518,6 +518,11 @@
             .story-hero-title { letter-spacing: -2px; }
         }
     </style>
+    <script>
+  if (window.innerWidth < 768 || /Mobi|Android/i.test(navigator.userAgent)) {
+    location.replace(location.pathname.replace('.html', '-mobile.html'));
+  }
+</script>
 </head>
 <body>
     <script>document.body.classList.add('js-enabled');</script>

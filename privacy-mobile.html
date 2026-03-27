@@ -2,83 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Privacy Policy | The Red Thread</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        .legal-page {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 8rem 2rem 4rem;
-        }
-        .legal-page h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #2A2422;
-            margin-bottom: 0.5rem;
-            letter-spacing: -1px;
-        }
-        .legal-page .last-updated {
-            color: #B92322;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 3rem;
-            display: block;
-        }
-        .legal-page h2 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #2A2422;
-            margin-top: 2.5rem;
-            margin-bottom: 0.75rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid rgba(0,0,0,0.07);
-        }
-        .legal-page p, .legal-page li {
-            font-size: 1rem;
-            color: #6B625E;
-            line-height: 1.8;
-        }
-        .legal-page ul {
-            padding-left: 1.5rem;
-        }
-        .legal-page li {
-            margin-bottom: 0.5rem;
-        }
-        .legal-highlight {
-            background: rgba(185, 35, 34, 0.05);
-            border-left: 3px solid #B92322;
-            padding: 1rem 1.5rem;
-            border-radius: 0 8px 8px 0;
-            margin: 1.5rem 0;
-        }
-        .legal-highlight p { margin: 0; }
-    </style>
+    <link rel="stylesheet" href="styles-mobile.css">
     <script>
-  if (window.innerWidth < 768 || /Mobi|Android/i.test(navigator.userAgent)) {
-    location.replace(location.pathname.replace('.html', '-mobile.html'));
-  }
-</script>
+        if (window.innerWidth >= 768 && !/Mobi|Android/i.test(navigator.userAgent)) {
+            location.replace('privacy.html');
+        }
+    </script>
 </head>
 <body>
 
     <header class="navbar">
-        <nav class="nav-links left-links">
-            <a href="index.html" class="nav-item">Home</a>
-            <a href="story.html" class="nav-item">Story</a>
-            <a href="index.html#blog" class="nav-item">Blog</a>
-        </nav>
+        <nav class="nav-links left-links"></nav>
         <div class="logo-container">
             <img src="logo.png" class="brand-logo" alt="The Red Thread" onerror="this.style.display='none';">
             <span class="brand-name">THE RED THREAD</span>
         </div>
         <nav class="nav-links right-links">
-            <a href="index.html#download" class="btn-coming-soon">Get Beta Access</a>
+            <a href="index-mobile.html#download" class="btn-coming-soon">Get Beta</a>
         </nav>
     </header>
 
@@ -129,14 +74,14 @@
                 <p class="footer-desc">From chatting to doing.</p>
             </div>
             <div class="legal-links">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="cookies.html">Cookie Policy</a>
+                <a href="privacy-mobile.html">Privacy Policy</a>
+                <a href="terms-mobile.html">Terms of Service</a>
+                <a href="cookies-mobile.html">Cookie Policy</a>
             </div>
             <div class="footer-links">
                 <h4>Connect</h4>
                 <a href="http://www.instagram.com/theredthread.app" target="_blank" rel="noopener">Instagram</a>
-                <a href="#">Contact Us</a>
+                <a href="contact.html">Contact Us</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -147,7 +92,9 @@
     <script>
         const navbar = document.querySelector('.navbar');
         window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 40);
+            navbar.style.boxShadow = window.scrollY > 40
+                ? '0 2px 12px rgba(0,0,0,0.08)'
+                : '0 1px 0 rgba(0,0,0,0.06)';
         });
     </script>
 </body>
