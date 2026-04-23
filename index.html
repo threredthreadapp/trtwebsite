@@ -62,10 +62,16 @@
             letter-spacing: 0.04em;
         }
     </style>
-    <script>
-  if (window.innerWidth < 768 || /Mobi|Android/i.test(navigator.userAgent)) {
-    location.replace(location.pathname.replace('.html', '-mobile.html'));
-  }
+   <script>
+  (function() {
+    var width = window.innerWidth || document.documentElement.clientWidth;
+    var isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    
+    // Redirect to mobile if the screen is small OR it's a mobile device
+    if (width < 900 || isMobile) {
+      window.location.replace('index-mobile.html');
+    }
+  })();
 </script>
 </head>
 <body>
