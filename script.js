@@ -30,22 +30,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     const leftMenu = document.querySelector('.nav-links.left-links');
     const badge = document.querySelector('.hero-img-badge');
+    let menuToggle = document.querySelector('.menu-toggle');
 
     if (navbar && leftMenu) {
-        const menuToggle = document.createElement('button');
-        menuToggle.type = 'button';
-        menuToggle.className = 'menu-toggle';
-        menuToggle.setAttribute('aria-label', 'Toggle menu');
-        menuToggle.innerHTML = '<span aria-hidden="true"></span>';
-        navbar.insertBefore(menuToggle, navbar.firstChild);
+        if (!menuToggle) {
+            menuToggle = document.createElement('button');
+            menuToggle.type = 'button';
+            menuToggle.className = 'menu-toggle';
+            menuToggle.setAttribute('aria-label', 'Toggle menu');
+            menuToggle.innerHTML = '<span aria-hidden="true"></span>';
+            navbar.insertBefore(menuToggle, navbar.firstChild);
+        }
 
-        menuToggle.addEventListener('click', () => {
-            navbar.classList.toggle('menu-open');
+        const toggleMenu = () => {
+            const isOpen = navbar.classList.toggle('menu-open');
+            menuToggle.setAttribute('aria-expanded', String(isOpen));
+        };
+
+        menuToggle.addEventListener('click', (event) => {
+            event.stopPropagation();
+            toggleMenu();
+        });
+
+        leftMenu.querySelectorAll('.nav-item').forEach(link => {
+            link.addEventListener('click', () => {
+                navbar.classList.remove('menu-open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            });
         });
 
         document.addEventListener('click', (event) => {
             if (!navbar.contains(event.target) && navbar.classList.contains('menu-open')) {
                 navbar.classList.remove('menu-open');
+                menuToggle.setAttribute('aria-expanded', 'false');
             }
         });
     }
