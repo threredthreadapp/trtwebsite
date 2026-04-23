@@ -157,12 +157,12 @@ a { -webkit-tap-highlight-color: transparent; }
     top: 7px;
 }
 .brand-logo {
-    height: 0.85rem !important;
+    height: 1.3rem !important;
     width: auto;
-    max-width: 2.6rem;
+    max-width: 3rem;
 }
 .navbar.scrolled .brand-logo {
-    height: 0.75rem !important;
+    height: 1rem !important;
 }
 .brand-name {
     color: var(--accent-red);
