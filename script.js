@@ -28,7 +28,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Logo parallax effect for premium feel
     const logoContainer = document.querySelector('.logo-container');
     const navbar = document.querySelector('.navbar');
+    const leftMenu = document.querySelector('.nav-links.left-links');
     const badge = document.querySelector('.hero-img-badge');
+
+    if (navbar && leftMenu) {
+        const menuToggle = document.createElement('button');
+        menuToggle.type = 'button';
+        menuToggle.className = 'menu-toggle';
+        menuToggle.setAttribute('aria-label', 'Toggle menu');
+        menuToggle.innerHTML = '<span aria-hidden="true"></span>';
+        navbar.insertBefore(menuToggle, navbar.firstChild);
+
+        menuToggle.addEventListener('click', () => {
+            navbar.classList.toggle('menu-open');
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!navbar.contains(event.target) && navbar.classList.contains('menu-open')) {
+                navbar.classList.remove('menu-open');
+            }
+        });
+    }
     
     window.addEventListener('scroll', () => {
         const scrolled = window.scrollY;

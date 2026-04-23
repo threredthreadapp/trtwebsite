@@ -6,7 +6,7 @@
     <title>The Red Thread</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles-mobile.css">
     <script>
   (function() {
@@ -241,10 +241,19 @@
 
     <script src="script.js"></script>
     <script>
-        (() => {
-            const d = document, s = d.createElement("script"); s.type = "module";
-            s.src = "https://w.behold.so/widget.js"; d.head.append(s);
-        })();
+        const loadBeholdWidget = () => {
+            const d = document;
+            const s = d.createElement('script');
+            s.type = 'module';
+            s.src = 'https://w.behold.so/widget.js';
+            d.head.append(s);
+        };
+
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(loadBeholdWidget, { timeout: 1500 });
+        } else {
+            setTimeout(loadBeholdWidget, 1500);
+        }
     </script>
     <script>
         function togglePhoneDropdown() {
