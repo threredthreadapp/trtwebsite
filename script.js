@@ -27,13 +27,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Logo parallax effect for premium feel
     const logoContainer = document.querySelector('.logo-container');
+    const navbar = document.querySelector('.navbar');
     const badge = document.querySelector('.hero-img-badge');
     
     window.addEventListener('scroll', () => {
         const scrolled = window.scrollY;
         
-        if (logoContainer && scrolled < 300) {
+        // Only apply parallax on desktop
+        if (window.innerWidth >= 900 && logoContainer && scrolled < 300) {
             logoContainer.style.transform = `translateY(${scrolled * 0.15}px)`;
+        }
+
+        // Add scrolled class to navbar
+        if (navbar) {
+            if (scrolled > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
         }
 
         if(badge && scrolled < 800) {
