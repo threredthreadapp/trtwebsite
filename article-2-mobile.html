@@ -5,14 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Field Notes | Collaborative Watchlists</title>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-mobile.css">
     <link rel="stylesheet" href="article-mobile.css">
-    <script>
-  if (window.innerWidth >= 768 && !/Mobi|Android/i.test(navigator.userAgent)) {
-    const desktopPage = location.pathname.replace('-mobile.html', '.html');
-    location.replace(desktopPage);
-  }
-</script>
+        <script>
+        (function() {
+            try {
+                var w = window.innerWidth || document.documentElement.clientWidth;
+                var ua = navigator.userAgent || '';
+                var isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
+                if (w >= 900 && !isMobile) {
+                    var dest = location.pathname.replace('-mobile.html', '.html');
+                    window.location.replace(dest);
+                }
+            } catch(e) {}
+        })();
+    </script>
 </head>
 <body class="article-body">
     <script>document.body.classList.add('js-enabled');</script>
@@ -21,7 +28,7 @@
             <a href="index.html" class="nav-item">Home</a>
         </nav>
         <div class="logo-container">
-            <img src="logo.png" class="brand-logo" alt="">
+            <img loading="lazy" src="logo.png" class="brand-logo" alt="">
             <span class="brand-name">THE RED THREAD</span>
         </div>
         <nav class="nav-links right-links">
@@ -41,7 +48,7 @@
             <h1 class="article-headline slide-up">Cinema<br>Without the<br><em>Scroll</em>.</h1>
             <p class="biro-annotation slide-up">↳ No more "what should we watch?" debates</p>
             <div class="article-hero-img slide-up">
-                <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=900&q=80" alt="">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=900&q=80" alt="">
                 <div class="img-caption biro-caption">Quiet moments, shared stories ✦</div>
             </div>
             <div class="article-body-grid">
@@ -65,7 +72,7 @@
     <footer class="site-footer" style="background: #fff; border-top: 1px solid #eee; padding: 40px 5% 24px; margin-top: 50px;">
         <div class="footer-content" style="max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px;">
             <div class="footer-brand">
-                <img src="logo.png" alt="The Red Thread" width="36" style="margin-bottom: 10px;">
+                <img loading="lazy" src="logo.png" alt="The Red Thread" width="36" style="margin-bottom: 10px;">
                 <p style="font-family: 'Inter', sans-serif; color: #666; font-size: 0.9rem;">From chatting to doing.</p>
             </div>
             <div style="display: flex; gap: 40px; flex-wrap: wrap;">

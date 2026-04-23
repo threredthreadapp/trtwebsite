@@ -9,9 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles-mobile.css">
     <script>
-        if (window.innerWidth >= 768 && !/Mobi|Android/i.test(navigator.userAgent)) {
-            location.replace('contact.html');
-        }
+        (function() {
+            try {
+                var w = window.innerWidth || document.documentElement.clientWidth;
+                var ua = navigator.userAgent || '';
+                var isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
+                if (w >= 900 && !isMobile) { window.location.replace('contact.html'); }
+            } catch(e) {}
+        })();
     </script>
     <style>
         .contact-hero {

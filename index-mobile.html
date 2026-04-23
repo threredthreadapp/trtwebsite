@@ -9,9 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles-mobile.css">
     <script>
-        if (window.innerWidth >= 768 && !/Mobi|Android/i.test(navigator.userAgent)) {
-            location.replace('index.html');
-        }
+        (function() {
+            try {
+                var w = window.innerWidth || document.documentElement.clientWidth;
+                var ua = navigator.userAgent || '';
+                var isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
+                if (w >= 900 && !isMobile) {
+                    window.location.replace('index.html');
+                }
+            } catch(e) {}
+        })();
     </script>
 </head>
 <body>
@@ -20,7 +27,7 @@
     <header class="navbar">
         <nav class="nav-links left-links"></nav>
         <div class="logo-container">
-            <img src="logo.png" class="brand-logo" alt="The Red Thread" onerror="this.style.display='none';">
+            <img loading="lazy" src="logo.png" class="brand-logo" alt="The Red Thread" onerror="this.style.display='none';">
             <span class="brand-name">THE RED THREAD</span>
         </div>
         <nav class="nav-links right-links">
@@ -92,7 +99,7 @@
                     <article class="real-postcard slide-up delay-1">
                         <div class="postcard-true">
                             <div class="pct-photo">
-                                <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=400&q=80" alt="Travel">
+                                <img loading="lazy" src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=400&q=80" alt="Travel">
                             </div>
                             <div class="pct-back">
                                 <div class="pct-header"><span class="pct-category">Activities</span></div>
@@ -110,7 +117,7 @@
                     <article class="real-postcard slide-up delay-2">
                         <div class="postcard-true">
                             <div class="pct-photo">
-                                <img src="https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&w=400&q=80" alt="The App">
+                                <img loading="lazy" src="https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&w=400&q=80" alt="The App">
                             </div>
                             <div class="pct-back">
                                 <div class="pct-header"><span class="pct-category">The App</span></div>
@@ -128,7 +135,7 @@
                     <article class="real-postcard slide-up delay-3">
                         <div class="postcard-true">
                             <div class="pct-photo">
-                                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=400&q=80" alt="Travel">
+                                <img loading="lazy" src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=400&q=80" alt="Travel">
                             </div>
                             <div class="pct-back">
                                 <div class="pct-header"><span class="pct-category">Travel</span></div>
@@ -210,7 +217,7 @@
     <footer class="site-footer">
         <div class="footer-content">
             <div class="footer-brand">
-                <img src="logo.png" class="footer-logo" alt="The Red Thread" onerror="this.style.display='none';">
+                <img loading="lazy" src="logo.png" class="footer-logo" alt="The Red Thread" onerror="this.style.display='none';">
                 <p class="footer-desc">From chatting to doing.</p>
             </div>
             <div class="legal-links">
@@ -221,7 +228,7 @@
             <div class="footer-links">
                 <h4>Connect</h4>
                 <a href="http://www.instagram.com/theredthread.app" target="_blank" rel="noopener">Instagram</a>
-                <a href="contact.html">Contact Us</a>
+                <a href="contact-mobile.html">Contact Us</a>
             </div>
         </div>
         <div class="footer-bottom">

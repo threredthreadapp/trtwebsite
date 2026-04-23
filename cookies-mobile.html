@@ -9,9 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles-mobile.css">
     <script>
-        if (window.innerWidth >= 768 && !/Mobi|Android/i.test(navigator.userAgent)) {
-            location.replace('cookies.html');
-        }
+        (function() {
+            try {
+                var w = window.innerWidth || document.documentElement.clientWidth;
+                var ua = navigator.userAgent || '';
+                var isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
+                if (w >= 900 && !isMobile) { window.location.replace('cookies.html'); }
+            } catch(e) {}
+        })();
     </script>
 </head>
 <body>
@@ -91,7 +96,7 @@
             <div class="footer-links">
                 <h4>Connect</h4>
                 <a href="http://www.instagram.com/theredthread.app" target="_blank" rel="noopener">Instagram</a>
-                <a href="contact.html">Contact Us</a>
+                <a href="contact-mobile.html">Contact Us</a>
             </div>
         </div>
         <div class="footer-bottom">

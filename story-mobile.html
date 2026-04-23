@@ -9,9 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles-mobile.css">
     <script>
-        if (window.innerWidth >= 768 && !/Mobi|Android/i.test(navigator.userAgent)) {
-            location.replace('story.html');
-        }
+        (function() {
+            try {
+                var w = window.innerWidth || document.documentElement.clientWidth;
+                var ua = navigator.userAgent || '';
+                var isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
+                if (w >= 900 && !isMobile) { window.location.replace('story.html'); }
+            } catch(e) {}
+        })();
     </script>
 </head>
 <body>
@@ -20,7 +25,7 @@
     <header class="navbar">
         <nav class="nav-links left-links"></nav>
         <div class="logo-container">
-            <img src="logo.png" class="brand-logo" alt="The Red Thread" onerror="this.style.display='none';">
+            <img loading="lazy" src="logo.png" class="brand-logo" alt="The Red Thread" onerror="this.style.display='none';">
             <span class="brand-name">THE RED THREAD</span>
         </div>
         <nav class="nav-links right-links">
@@ -42,7 +47,7 @@
             <div class="origin-inner">
                 <div class="origin-visual-col fade-in">
                     <div class="origin-img-stack">
-                        <img class="origin-img-main"
+                        <img loading="lazy" class="origin-img-main"
                             src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80"
                             alt="Friends making memories">
                         <div class="origin-badge">Est. 2025</div>
@@ -114,7 +119,7 @@
 
                 <div class="founder-card slide-up delay-1">
                     <div class="founder-img-col">
-                        <img src="lara.JPG" alt="Lara, Co-Founder" style="object-position: center center;">
+                        <img loading="lazy" src="lara.JPG" alt="Lara, Co-Founder" style="object-position: center center;">
                         <span class="founder-role-tag">Co-Founder //</span>
                     </div>
                     <div class="founder-text-col">
@@ -128,7 +133,7 @@
 
                 <div class="founder-card slide-up delay-2">
                     <div class="founder-img-col">
-                        <img src="stella.JPG" alt="Stella, Co-Founder">
+                        <img loading="lazy" src="stella.JPG" alt="Stella, Co-Founder">
                         <span class="founder-role-tag">Co-Founder //</span>
                     </div>
                     <div class="founder-text-col">
@@ -176,7 +181,7 @@
     <footer class="site-footer">
         <div class="footer-content">
             <div class="footer-brand">
-                <img src="logo.png" class="footer-logo" alt="The Red Thread" onerror="this.style.display='none';">
+                <img loading="lazy" src="logo.png" class="footer-logo" alt="The Red Thread" onerror="this.style.display='none';">
                 <p class="footer-desc">From chatting to doing.</p>
             </div>
             <div class="legal-links">
@@ -187,7 +192,7 @@
             <div class="footer-links">
                 <h4>Connect</h4>
                 <a href="http://www.instagram.com/theredthread.app" target="_blank" rel="noopener">Instagram</a>
-                <a href="contact.html">Contact Us</a>
+                <a href="contact-mobile.html">Contact Us</a>
             </div>
         </div>
         <div class="footer-bottom">
