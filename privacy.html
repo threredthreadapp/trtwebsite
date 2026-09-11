@@ -38,6 +38,7 @@
             margin-bottom: 0.75rem;
             padding-bottom: 0.5rem;
             border-bottom: 1px solid rgba(0,0,0,0.07);
+            scroll-margin-top: 6rem;
         }
         .legal-page p, .legal-page li {
             font-size: 1rem;
@@ -50,6 +51,9 @@
         .legal-page li {
             margin-bottom: 0.5rem;
         }
+        .legal-page a {
+            color: #B92322;
+        }
         .legal-highlight {
             background: rgba(185, 35, 34, 0.05);
             border-left: 3px solid #B92322;
@@ -58,10 +62,16 @@
             margin: 1.5rem 0;
         }
         .legal-highlight p { margin: 0; }
+        .legal-toc {
+            columns: 2;
+            column-gap: 2rem;
+            padding-left: 1.2rem;
+        }
+        .legal-toc li { margin-bottom: 0.25rem; }
     </style>
     <script>
   if (window.innerWidth < 768 || /Mobi|Android/i.test(navigator.userAgent)) {
-    location.replace(location.pathname.replace('.html', '-mobile.html'));
+    location.replace(location.pathname.replace('.html', '-mobile.html') + location.hash);
   }
 </script>
 </head>
@@ -83,49 +93,182 @@
     </header>
 
     <main class="legal-page">
+      
         <h1>Privacy Policy</h1>
-        <span class="last-updated">Last updated: March 25, 2026</span>
+        <span class="last-updated">Last updated: September 11, 2026</span>
 
         <div class="legal-highlight">
-            <p>Your privacy matters to us. This policy explains what data we collect, why we collect it, and how we protect it.</p>
+            <p>This policy explains what The Red Thread collects, why, who it is shared with, how long it is kept, and how you can control it — including how to delete your account.</p>
         </div>
 
-        <h2>1. Information We Collect</h2>
-        <p>We collect information you provide directly to us when you create an account, use our app, or contact us. This includes your name, email address, and any content you create within the app such as plans, memories, and activity lists.</p>
-
-        <h2>2. How We Use Your Information</h2>
-        <p>We use the information we collect to:</p>
-        <ul>
-            <li>Provide, maintain, and improve The Red Thread app</li>
-            <li>Personalise your experience and surface relevant activity suggestions</li>
-            <li>Send you updates, newsletters, and promotional content (with your consent)</li>
-            <li>Respond to your comments and questions</li>
-            <li>Monitor and analyse usage patterns to improve our service</li>
+        <ul class="legal-toc">
+            <li><a href="#who-we-are">Who we are</a></li>
+            <li><a href="#data-we-collect">Data we collect</a></li>
+            <li><a href="#how-we-use">How and why we use it</a></li>
+            <li><a href="#visible">What other users can see</a></li>
+            <li><a href="#service-providers">Service providers</a></li>
+            <li><a href="#ai">AI-generated suggestions</a></li>
+            <li><a href="#advertising">Advertising</a></li>
+            <li><a href="#purchases">In-app purchases</a></li>
+            <li><a href="#moderation">Moderation and safety</a></li>
+            <li><a href="#transfers">International transfers</a></li>
+            <li><a href="#retention">How long we keep data</a></li>
+            <li><a href="#delete-account">Deleting your account</a></li>
+            <li><a href="#rights">Your rights</a></li>
+            <li><a href="#children">Children</a></li>
+            <li><a href="#security">Security</a></li>
+            <li><a href="#changes">Changes and contact</a></li>
         </ul>
 
-        <h2>3. Sharing of Information</h2>
-        <p>We do not sell your personal information. We may share your information with trusted third-party service providers who assist us in operating the app, subject to strict confidentiality agreements. We may also disclose information if required by law.</p>
+        <h2 id="who-we-are">1. Who we are</h2>
+        <p>The Red Thread (the “app”) is operated by <strong>Stella Darroux and Lara Aranginu</strong>, <strong>86 Claude Road, E130QG, London</strong> (“we”, “us”). We are the data controller for the personal data described in this policy.</p>
+        <p>For any question or request about your data, write to <strong>threredthreadapp@gmail.com</strong>.</p>
+        <p>This policy covers the mobile app on Android and iOS. Our website uses cookies as described in our <a href="cookies.html">Cookie Policy</a>.</p>
 
-        <h2>3. In-App Payments</h2>
-        <p>If you make purchases within The Red Thread, your payment information is processed securely by our third-party payment processors. We do not store your full credit card information on our servers. These processors may collect certain transaction data in accordance with their own privacy policies.</p>
+        <h2 id="data-we-collect">2. Data we collect</h2>
+        <p><strong>Account and profile</strong></p>
+        <ul>
+            <li>Your name, username and email address.</li>
+            <li>How you sign in: email and password (your password is stored by Firebase Authentication in hashed form — we never see it), Google, or Sign in with Apple. With Apple, you can hide your real email address; we then receive a relay address.</li>
+            <li>Your profile photo, if you add one.</li>
+        </ul>
+        <p><strong>Your social connections</strong></p>
+        <ul>
+            <li>Friends, friend requests you send and receive, and users you block.</li>
+            <li>The journeys, challenges and watchlists you belong to or are invited to.</li>
+        </ul>
+        <p><strong>Content you create</strong></p>
+        <ul>
+            <li>Journeys and their activities, memories (photos and text), watchlists and the films you add.</li>
+            <li>Quest completions, including the proof photos you take, the likes you give, and the reports you submit.</li>
+            <li>Before any photo leaves your phone, the app removes its embedded metadata (EXIF), including the GPS position where it was taken.</li>
+        </ul>
+        <p><strong>Game and purchase data</strong></p>
+        <ul>
+            <li>Your coin balance, experience points, boosts, rewards and rankings in challenges.</li>
+            <li>Records of in-app purchases (product, purchase reference, date). We never receive your card or bank details.</li>
+        </ul>
+        <p><strong>Location — only if you allow it</strong></p>
+        <ul>
+            <li><strong>Spark:</strong> when you ask for ideas without typing a place, the app uses your device's precise location for that request, to suggest things to do nearby. It is sent to our server and to Google (Maps and Gemini) to produce the suggestion, and is not saved to your profile.</li>
+            <li><strong>Quests:</strong> the app turns your location into your town and country only, so that weekly quests fit where you are. Your exact position is not stored.</li>
+            <li>When you save an activity or a place, its name, address and map position are stored with that activity.</li>
+        </ul>
+        <p><strong>Device and technical data</strong></p>
+        <ul>
+            <li>A push notification token, so we can send you notifications.</li>
+            <li>App integrity signals from Google Play Integrity (Android) and Apple DeviceCheck (iOS), used to confirm requests come from a genuine copy of the app.</li>
+            <li>Your advertising identifier, used by our advertising partner as described in section 7.</li>
+            <li>Your language setting, and technical server logs (your user ID, the time of a request, errors).</li>
+        </ul>
+        <p><strong>What we do not collect</strong></p>
+        <ul>
+            <li>We do not use third-party analytics or crash-reporting tools in the app.</li>
+            <li>We do not access your contacts, microphone or calendar. “Add to calendar” simply opens your calendar app or Google Calendar with the event details, and you choose whether to save it.</li>
+        </ul>
 
-        <h2>4. Advertising</h2>
-        <p>We may work with third-party advertising partners to display ads within the app. These partners may use technologies like cookies, SDKs, or device identifiers to collect information about your usage of our app and other apps to provide interest-based advertising. You can opt out of personalized advertising through your device's privacy settings.</p>
-        
-        <h2>4. Data Retention</h2>
-        <p>We retain your personal data for as long as your account is active or as needed to provide you services. You may request deletion of your account and associated data at any time by contacting us.</p>
+        <h2 id="how-we-use">3. How and why we use your data</h2>
+        <ul>
+            <li><strong>To provide the app</strong> — your account, friends, journeys, memories, watchlists, challenges, quests, coins and notifications. <em>Legal basis: performance of our contract with you (our <a href="terms.html">Terms of Service</a>).</em></li>
+            <li><strong>To suggest activities and generate quests</strong>, including with AI (section 6). <em>Legal basis: performance of our contract.</em></li>
+            <li><strong>To use your location</strong> for nearby suggestions and local quests. <em>Legal basis: your consent, given through your device's location permission, which you can withdraw at any time in your device settings.</em></li>
+            <li><strong>To keep the community safe</strong> — reports, blocking, suspension of accounts that post harmful content, and preventing cheating in challenges. <em>Legal basis: our legitimate interest in a safe and fair service.</em></li>
+            <li><strong>To protect the service</strong> — app integrity checks, fraud prevention, verifying purchases, and security logs. <em>Legal basis: our legitimate interest in preventing abuse and fraud.</em></li>
+            <li><strong>To show rewarded ads</strong> when you choose to watch one (section 7). <em>Legal basis: your consent where the law requires it for personalised ads; otherwise our legitimate interest in funding a free app.</em></li>
+            <li><strong>To keep records required by law</strong>, for example for purchases. <em>Legal basis: legal obligation.</em></li>
+            <li><strong>To answer you</strong> when you contact us.</li>
+        </ul>
+        <p>We do not sell your personal data, and we do not send marketing emails.</p>
 
-        <h2>5. Security</h2>
-        <p>We implement appropriate technical and organisational measures to protect your personal information against unauthorised access, alteration, disclosure, or destruction.</p>
+        <h2 id="visible">4. What other users can see</h2>
+        <ul>
+            <li>Your name, username and profile photo are visible to other users of the app, for example in leaderboards, challenges and friend lists.</li>
+            <li>Your quest proof photos are visible to the members of the challenge they belong to, and to your accepted friends.</li>
+            <li>Memories and activities in a journey are visible to that journey's members; a watchlist is visible to its members.</li>
+            <li>Your friends list and the users you block are private. We never tell someone that you blocked or reported them.</li>
+        </ul>
+        <p>Anything you share with other people can be seen, and saved, by them. Please only share what you are comfortable sharing.</p>
 
-        <h2>6. Your Rights</h2>
-        <p>Depending on your location, you may have the right to access, correct, or delete the personal information we hold about you. To exercise these rights, please contact us at <strong>privacy@theredthread.app</strong>.</p>
+        <h2 id="service-providers">5. Service providers</h2>
+        <p>We rely on the following companies to run the app. They process data on our behalf and only for the purposes below, unless stated otherwise.</p>
+        <ul>
+            <li><strong>Google Firebase and Google Cloud</strong> — account sign-in, database, photo storage, server functions, push notifications and app integrity checks. All data in section 2 is stored there.</li>
+            <li><strong>Google Maps Platform</strong> — maps, place search and place details, and turning a location into a town name. Receives the place searches and locations involved in those requests.</li>
+            <li><strong>Google Gemini API</strong> — generating Spark ideas and quests (section 6).</li>
+            <li><strong>Google AdMob</strong> — rewarded video ads (section 7).</li>
+            <li><strong>Google Play</strong> and <strong>Apple App Store</strong> — processing in-app purchases, which they handle under their own privacy policies.</li>
+            <li><strong>Google Sign-In</strong> and <strong>Sign in with Apple</strong> — if you choose them to sign in.</li>
+            <li><strong>The Movie Database (TMDB)</strong> — film information for watchlists. Your searches go through our server, so TMDB does not receive your identity.</li>
+        </ul>
+        <p>You can read Google's privacy policy at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a> and Apple's at <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a>.</p>
+        <p>We may also disclose data if the law requires it, or to protect the rights and safety of our users.</p>
 
-        <h2>7. Changes to This Policy</h2>
-        <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes by posting the new policy on this page with an updated date.</p>
+        <h2 id="ai">6. AI-generated suggestions</h2>
+        <p>Spark ideas and weekly quests are written by Google's Gemini AI. To generate them, our server sends Gemini the information needed for the request: the place and mood you enter (or your location, section 2), your language, and for quests your town and country. We do not send your name, email or photos.</p>
+        <p>We do not store what is sent to Gemini. We store the suggestions and quests it produces, so they appear in the app. AI suggestions are creative ideas, not professional advice: always use your judgement and follow local laws and safety rules.</p>
 
-        <h2>8. Contact Us</h2>
-        <p>If you have any questions about this Privacy Policy, please contact us at <strong>threredthreadapp@gmail.com</strong>.</p>
+        <h2 id="advertising">7. Advertising</h2>
+        <p>The app shows <strong>rewarded video ads</strong> from Google AdMob, only when you choose to watch one in exchange for a reward. AdMob may collect your device's advertising identifier and information about your device and the ad, to show, measure and — where allowed — personalise ads. Google acts as an independent controller for personalised advertising.</p>
+        <ul>
+            <li><strong>European Economic Area, United Kingdom and Switzerland:</strong> personalised ads are shown only if you agree in the consent message displayed in the app. You can change your choice at any time from the app's settings.</li>
+            <li><strong>iOS:</strong> the app asks your permission before accessing your advertising identifier (App Tracking Transparency). You can change this in Settings › Privacy &amp; Security › Tracking.</li>
+            <li><strong>Android:</strong> you can reset or delete your advertising ID in your device settings (Settings › Google › Ads, or Settings › Privacy › Ads).</li>
+        </ul>
+
+        <h2 id="purchases">8. In-app purchases</h2>
+        <p>Coin packs and other in-app products are sold through Google Play or the Apple App Store, which process your payment. We receive a purchase confirmation, which our server verifies with Google or Apple before crediting your account, so that the same purchase cannot be used twice.</p>
+
+        <h2 id="moderation">9. Moderation and safety</h2>
+        <p>You can block any user and report content you find shocking or inappropriate. Reports are confidential: the reported person is never told who reported them.</p>
+        <p><strong>Automatic suspension:</strong> when three different users report an account for sensitive content, the account is automatically suspended to protect the community. This is a decision taken by an automated system. If your account is suspended and you believe it is a mistake, write to <strong>threredthreadapp@gmail.com</strong>: a person will review your case, and you can explain your point of view.</p>
+
+        <h2 id="transfers">10. International transfers</h2>
+        <p>Our data is hosted by Google on servers located in the <strong>United States</strong>. When your data is transferred outside the European Economic Area, the United Kingdom or Switzerland, it is protected by the safeguards provided in Google's data processing terms, including the European Commission's Standard Contractual Clauses.</p>
+
+        <h2 id="retention">11. How long we keep data</h2>
+        <ul>
+            <li><strong>Your account and content:</strong> for as long as your account exists. When you delete your account, they are deleted as described in section 12.</li>
+            <li><strong>Server logs:</strong> up to 30 days.</li>
+            <li><strong>Purchase records:</strong> kept after account deletion, without your user ID, for as long as needed to prevent fraud and to meet legal and accounting obligations.</li>
+            <li><strong>Reports you submitted:</strong> kept after account deletion so that moderation decisions remain reliable; the reported person is still never told who reported them.</li>
+            <li><strong>Emails you send us:</strong> for as long as needed to handle your request, and no more than 3 years after our last exchange.</li>
+        </ul>
+
+        <h2 id="delete-account">12. Deleting your account</h2>
+        <p><strong>In the app:</strong> go to <strong>Profile › Settings › Account › Danger Zone › Delete Account</strong> and confirm. Deletion starts immediately.</p>
+        <p><strong>Without the app:</strong> send an email to <strong>threredthreadapp@gmail.com</strong> from the email address linked to your account, with the subject “Delete my account”. We will delete your account within 30 days and confirm by email. If you signed in with Apple using a hidden email address, tell us so and we will help you identify your account.</p>
+        <p><strong>What is deleted:</strong></p>
+        <ul>
+            <li>your profile, profile photo, username and sign-in account;</li>
+            <li>your friends, friend requests and block list, on both sides;</li>
+            <li>your quest completions and proof photos, and the memory photos you uploaded;</li>
+            <li>your coins, experience points, boosts, rewards and transaction history;</li>
+            <li>your membership of journeys, challenges and watchlists. A space whose last member you were is deleted; otherwise it stays with the other members, and ownership passes to one of them.</li>
+        </ul>
+        <p><strong>What is kept:</strong> anonymised purchase records and reports you submitted (section 11), content that other members created in shared spaces, and server logs for up to 30 days. Google Play and Apple keep their own records of your purchases under their policies.</p>
+
+        <h2 id="rights">13. Your rights</h2>
+        <p>Depending on where you live — and in any case if you are in the European Economic Area, the United Kingdom or Switzerland — you have the right to:</p>
+        <ul>
+            <li><strong>access</strong> your data and receive a copy of it;</li>
+            <li><strong>correct</strong> it (you can edit your profile directly in the app);</li>
+            <li><strong>delete</strong> it (section 12);</li>
+            <li><strong>restrict</strong> or <strong>object to</strong> its use, in particular when we rely on our legitimate interests;</li>
+            <li><strong>receive your data</strong> in a portable format;</li>
+            <li><strong>withdraw your consent</strong> at any time — for location, notifications and tracking through your device settings, and for personalised ads through the consent settings in the app — without affecting what was done before;</li>
+            <li><strong>ask for human review</strong> of an automatic suspension (section 9).</li>
+        </ul>
+        <p>To exercise these rights, write to <strong>threredthreadapp@gmail.com</strong> from the email address linked to your account. We answer within one month. You can also lodge a complaint with your local data protection authority — for example the CNIL in France or the ICO in the United Kingdom.</p>
+
+        <h2 id="children">14. Children</h2>
+        <p>The Red Thread is not intended for children. You must be at least <strong>13 years old</strong> to use it, or older if the law of your country requires it to use such a service without parental consent (for example 15 in France or 16 in Germany). We do not knowingly collect data from children below that age; if you believe a child has created an account, contact us and we will delete it.</p>
+
+        <h2 id="security">15. Security</h2>
+        <p>Data is encrypted in transit and at rest by Google. Access to your data is restricted by strict rules on our servers, so that other users can only see what section 4 describes. Requests to our server must come from a genuine copy of the app, purchases are verified with Google or Apple, and location metadata is removed from photos before upload. No system is completely secure, but we work to protect your data and review our security settings regularly.</p>
+
+        <h2 id="changes">16. Changes and contact</h2>
+        <p>We may update this policy, for example when we add a feature. We will change the date at the top of this page, and tell you in the app before any significant change takes effect.</p>
+        <p>Questions, requests or complaints: <strong>threredthreadapp@gmail.com</strong> — [LEGAL NAME], [POSTAL ADDRESS].</p>
     </main>
 
     <footer class="site-footer">
@@ -142,11 +285,11 @@
             <div class="footer-links">
                 <h4>Connect</h4>
                 <a href="http://www.instagram.com/theredthread.app" target="_blank" rel="noopener">Instagram</a>
-                <a href="#">Contact Us</a>
+                <a href="contact.html">Contact Us</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2025 The Red Thread. All rights reserved.</p>
+            <p>© 2026 The Red Thread. All rights reserved.</p>
         </div>
     </footer>
 
